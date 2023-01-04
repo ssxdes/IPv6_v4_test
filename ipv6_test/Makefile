@@ -11,6 +11,7 @@ CLIENT_DEPENDENCE := main_client.c
 DO_MAKE := $(MAKE) $(MAKE_FLAG) $(TARGET_DEPENDENCE) $(CFLAG)
 DO_MAKE_CLEAN := rm -rf
 
+.PHONY: ipv6addr all client server clean server-clean client-clean
 .DEFAULT_GOAL := all
 
 ipv6addr:
