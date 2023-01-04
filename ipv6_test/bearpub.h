@@ -3,8 +3,8 @@ Copyright (C), 2009-2010,
 File name:      socketLib.h
 Author:       
 Date:         
-Description:    ¶Ô²»Í¬²Ù×÷ÏµÍ³µÄsocket½Ó¿Ú½øĞĞ·â×°£¬¶ÔÉÏ²ãÌá¹©Í³Ò»socket½Ó¿Ú
-Others:         ÎŞ
+Description:    å¯¹ä¸åŒæ“ä½œç³»ç»Ÿçš„socketæ¥å£è¿›è¡Œå°è£…ï¼Œå¯¹ä¸Šå±‚æä¾›ç»Ÿä¸€socketæ¥å£
+Others:         æ— 
   *************************************************************************/
 #ifndef __BEARPUB_H__
 #define __BEARPUB_H__
@@ -13,12 +13,12 @@ Others:         ÎŞ
 extern "C" {
 #endif
 /************************************************************************
-                            ÒıÓÃµÄÍ·ÎÄ¼ş
+                            å¼•ç”¨çš„å¤´æ–‡ä»¶
 *************************************************************************/
 #include "sys.h"
 
 /************************************************************************
-                            ºê¶¨Òå
+                            å®å®šä¹‰
 *************************************************************************/
 #ifndef SOCK_STREAM
 #define    ESOCK_STREAM    1        //TCP
@@ -78,7 +78,7 @@ enum
 };
 
 /************************************************************************
-                             º¯ÊıÉùÃ÷
+                             å‡½æ•°å£°æ˜
 *************************************************************************/
 /*---------------------------socket support---------------------------------*/
 #define  IPv4                      AF_INET
@@ -86,20 +86,20 @@ enum
 #define  IPv4_Addr_Any             INADDR_ANY
 #define  IPv4_Addr_LoopBack        INADDR_LOOPBACK
 #define  IPv4_Addr_BroadCast       INADDR_BROADCAST
-//       IPv4  ::  µ¥²¥ / ×é²¥ / ¹ã²¥
-#define  IPv6_Addr_Any             in6addr_any         //µØÖ·::/128
-#define  IPv6_Addr_LoopBack        in6addr_loopback    //µØÖ·::1/128
-//       IPv6  ::  µ¥²¥ / ×é²¥ / ·º²¥
-//       µ¥²¥ : Î¨Ò»±¾µØµØÖ·       FC00::/7
-//              Á´Â·±¾µØµØÖ·Ç°×º   FE80::/10
-//       ×é²¥ : ×é²¥µØÖ·Ç°×º       FF00::/8
+//       IPv4  ::  å•æ’­ / ç»„æ’­ / å¹¿æ’­
+#define  IPv6_Addr_Any             in6addr_any         //åœ°å€::/128
+#define  IPv6_Addr_LoopBack        in6addr_loopback    //åœ°å€::1/128
+//       IPv6  ::  å•æ’­ / ç»„æ’­ / æ³›æ’­
+//       å•æ’­ : å”¯ä¸€æœ¬åœ°åœ°å€       FC00::/7
+//              é“¾è·¯æœ¬åœ°åœ°å€å‰ç¼€   FE80::/10
+//       ç»„æ’­ : ç»„æ’­åœ°å€å‰ç¼€       FF00::/8
 
-// IPv6²»ÔÙÖ§³ÖÖĞ¼ä½Úµã·ÖÆ¬£¬½öÖ§³Ö¶Ëµ½¶ËµÄ·ÖÆ¬
+// IPv6ä¸å†æ”¯æŒä¸­é—´èŠ‚ç‚¹åˆ†ç‰‡ï¼Œä»…æ”¯æŒç«¯åˆ°ç«¯çš„åˆ†ç‰‡
 
 typedef struct in_addr             IPv4Addr_T;
 typedef struct in6_addr            IPv6Addr_T;
 
-#ifndef  IPV6_ADDRESS_BITS         //IPv6µØÖ·µÄ×Ö·û´®Î»Êı
+#ifndef  IPV6_ADDRESS_BITS         //IPv6åœ°å€çš„å­—ç¬¦ä¸²ä½æ•°
 #define  IPV6_ADDRESS_BITS         (sizeof(IN6_ADDR) * 8)
 #endif
 #ifdef   INET6_ADDRSTRLEN
@@ -108,7 +108,7 @@ typedef struct in6_addr            IPv6Addr_T;
 #define  MAX_IPV6_ADDRSTR_LEN      INET6_ADDR_LEN
 #else                               
 #define  MAX_IPV6_ADDRSTR_LEN      64
-#endif   //(>=46):IPv6µØÖ·×Ö·û´®µÄ×î´ó³¤¶È
+#endif   //(>=46):IPv6åœ°å€å­—ç¬¦ä¸²çš„æœ€å¤§é•¿åº¦
 
 /* Interface index */
 #ifdef WINDOWS
@@ -159,529 +159,529 @@ extern void if_freenameindex(struct if_nameindex* __ptr);
 
 /************************************************************************
   Function:       TCPIPv6_init
-  Description:    ¶ÔIPv6µÄTCPIPĞ­Òé½øĞĞ³õÊ¼»¯
-  Input:          ÎŞ
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å¯¹IPv6çš„TCPIPåè®®è¿›è¡Œåˆå§‹åŒ–
+  Input:          æ— 
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 TCPIP_init (void);
 
 /************************************************************************
   Function:       TCPIPv6_discard
-  Description:    IPv6µÄTCPIPĞ­ÒéÖÕÖ¹³ÌĞò
-  Input:          ÎŞ
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    IPv6çš„TCPIPåè®®ç»ˆæ­¢ç¨‹åº
+  Input:          æ— 
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 TCPIP_discard (void);
 
 /************************************************************************
   Function:       CloseSocket
-  Description:    ¹Ø±ÕÒ»¸öSocket
-  Input:          id:Socket¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ºÏ·¨µÄ¹Ø±ÕÓ¦ÏÈshutdown½ÓÊÕÍêËùÓĞÊı¾İºóÔÙclosesocket
-                  ´Ë´¦ÎªÖ±½Ó¹Ø±ÕÏà¹ØËùÓĞ·şÎñ
+  Description:    å…³é—­ä¸€ä¸ªSocket
+  Input:          id:Socketå¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         åˆæ³•çš„å…³é—­åº”å…ˆshutdownæ¥æ”¶å®Œæ‰€æœ‰æ•°æ®åå†closesocket
+                  æ­¤å¤„ä¸ºç›´æ¥å…³é—­ç›¸å…³æ‰€æœ‰æœåŠ¡
 ************************************************************************/
 extern EINT32 CloseSocket (EFD_T id);
 
 /************************************************************************
   Function:       CalculateChecksum
-  Description:    ¼ÆËãIPv4/IPv6Êı¾İ°üĞ£ÑéºÍ
-  Input:          pData:ĞèÒª¼ÆËãĞ£ÑéµÄÊı¾İ²¿·Ö
-                  len: Êı¾İ²¿·ÖµÄ³¤¶È,µ¥Î»bit
-  Output:         ÎŞ
-  Return:         Ğ£ÑéºÍ
-  Others:         ÎŞ
+  Description:    è®¡ç®—IPv4/IPv6æ•°æ®åŒ…æ ¡éªŒå’Œ
+  Input:          pData:éœ€è¦è®¡ç®—æ ¡éªŒçš„æ•°æ®éƒ¨åˆ†
+                  len: æ•°æ®éƒ¨åˆ†çš„é•¿åº¦,å•ä½bit
+  Output:         æ— 
+  Return:         æ ¡éªŒå’Œ
+  Others:         æ— 
 ************************************************************************/
 extern EUINT16 CalculateChecksum (ECHAR * pData, EUINT32 len);
 
 /************************************************************************
   Function:       MapIPv4toIPv6
-  Description:    ½«ÕûÊıĞÎÊ½µÄIPv4µØÖ·Ó³Éä³ÉºÏ·¨µÄASCIIÂëĞÎÊ½µÄIPv6µØÖ·
-  Input:          ipv4: ÕûÊıĞÎÊ½µÄIPv4µØÖ·
-  Output:         ipv6: Êä³öIPv6µØÖ·ASCIIÂëĞÎÊ½µÄ×Ö·û´®Ö¸Õë
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  ETOK - ´¦Àí³É¹¦
-  Others:         ÎŞ
+  Description:    å°†æ•´æ•°å½¢å¼çš„IPv4åœ°å€æ˜ å°„æˆåˆæ³•çš„ASCIIç å½¢å¼çš„IPv6åœ°å€
+  Input:          ipv4: æ•´æ•°å½¢å¼çš„IPv4åœ°å€
+  Output:         ipv6: è¾“å‡ºIPv6åœ°å€ASCIIç å½¢å¼çš„å­—ç¬¦ä¸²æŒ‡é’ˆ
+  Return:         ETERROR - å¤„ç†å¤±è´¥  ETOK - å¤„ç†æˆåŠŸ
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 MapIPv4toIPv6 (EUINT32 ipv4, ECHAR * ipv6);
 
 /************************************************************************
   Function:       GetIPVersion
-  Description:    ¸ù¾İIPµØÖ·»ñÈ¡ÆäIP°æ±¾
-  Input:          ip: Ö÷»úÃû(IPµØÖ·)µÄASCIIÂëĞÎÊ½µÄ×Ö·û´®Ö¸Õë
-  Output:         ÎŞ
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  IPv4/IPv6 - ´¦Àí³É¹¦
-  Others:         ÎŞ
+  Description:    æ ¹æ®IPåœ°å€è·å–å…¶IPç‰ˆæœ¬
+  Input:          ip: ä¸»æœºå(IPåœ°å€)çš„ASCIIç å½¢å¼çš„å­—ç¬¦ä¸²æŒ‡é’ˆ
+  Output:         æ— 
+  Return:         ETERROR - å¤„ç†å¤±è´¥  IPv4/IPv6 - å¤„ç†æˆåŠŸ
+  Others:         æ— 
 ************************************************************************/
 extern EUINT16 GetIPVersion (ECHAR * ip);
 
 /************************************************************************
   Function:       GetSockIPVersion
-  Description:    »ñÈ¡SocketµÄIP°æ±¾
-  Input:          sockId: Ì×½Ó×Ö
-  Output:         ÎŞ
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  IPv4/IPv6 - ´¦Àí³É¹¦
-  Others:         ´Ë½Ó¿Ú½öÓÃÓÚÒÑ¾­°ó¶¨bindµÄsocket
+  Description:    è·å–Socketçš„IPç‰ˆæœ¬
+  Input:          sockId: å¥—æ¥å­—
+  Output:         æ— 
+  Return:         ETERROR - å¤„ç†å¤±è´¥  IPv4/IPv6 - å¤„ç†æˆåŠŸ
+  Others:         æ­¤æ¥å£ä»…ç”¨äºå·²ç»ç»‘å®šbindçš„socket
 ************************************************************************/
 extern EUINT16 GetSockIPVersion (EFD_T sockId);
 
 /************************************************************************
   Function:       GetSockPort
-  Description:    »ñÈ¡Socket°ó¶¨µÄ¶Ë¿Ú
-  Input:          sockId: Ì×½Ó×Ö
-  Output:         ÎŞ
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  else - ´¦Àí³É¹¦
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6µ«½öÓÃÓÚÒÑ¾­°ó¶¨bindµÄsocket
+  Description:    è·å–Socketç»‘å®šçš„ç«¯å£
+  Input:          sockId: å¥—æ¥å­—
+  Output:         æ— 
+  Return:         ETERROR - å¤„ç†å¤±è´¥  else - å¤„ç†æˆåŠŸ
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6ä½†ä»…ç”¨äºå·²ç»ç»‘å®šbindçš„socket
 ************************************************************************/
 extern EUINT16 GetSockPort (EFD_T sockId);
 
 /************************************************************************
   Function:       GetSockAddr
-  Description:    »ñÈ¡Socket°ó¶¨µÄIPµØÖ·
-  Input:          sockId: Ì×½Ó×Ö
-  Output:         s: Ö¸ÏòIPv6µØÖ·ASCIIÂëĞÎÊ½µÄ×Ö·û´®Ö¸Õë
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  ETOK - ´¦Àí³É¹¦
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6µ«½öÓÃÓÚÒÑ¾­°ó¶¨bindµÄsocket
+  Description:    è·å–Socketç»‘å®šçš„IPåœ°å€
+  Input:          sockId: å¥—æ¥å­—
+  Output:         s: æŒ‡å‘IPv6åœ°å€ASCIIç å½¢å¼çš„å­—ç¬¦ä¸²æŒ‡é’ˆ
+  Return:         ETERROR - å¤„ç†å¤±è´¥  ETOK - å¤„ç†æˆåŠŸ
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6ä½†ä»…ç”¨äºå·²ç»ç»‘å®šbindçš„socket
 ************************************************************************/
 extern EINT32 GetSockAddr (EFD_T sockId, ECHAR * s);
 
 /************************************************************************
   Function:       OpenSockReuse
-  Description:    ÉèÖÃSocketÌ×½Ó×ÖID¿É(closeÖ®ºó)ÖØÓÃ
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
+  Description:    è®¾ç½®Socketå¥—æ¥å­—IDå¯(closeä¹‹å)é‡ç”¨
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
 ************************************************************************/
 extern EINT32 OpenSockReuse (EFD_T sock);
 
 /************************************************************************
   Function:       CloseSockReuse
-  Description:    ½ûÖ¹SocketÌ×½Ó×ÖID¿ÉÖØÓÃ
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
+  Description:    ç¦æ­¢Socketå¥—æ¥å­—IDå¯é‡ç”¨
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
 ************************************************************************/
 extern EINT32 CloseSockReuse (EFD_T sock);
 
 /************************************************************************
   Function:       SetSockDontRoute
-  Description:    ÉèÖÃsocket²»¾­¹ıÂ·ÓÉ/Íø¹Ø¶øÖ±½Ó·¢ÍùÄ¿±êÖ÷»ú
-  Input:          sockId: ÉèÖÃµÄsocketID
-  Output:         ÎŞ
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  ETOK - ´¦Àí³É¹¦
-  Others:         ÎŞ
+  Description:    è®¾ç½®socketä¸ç»è¿‡è·¯ç”±/ç½‘å…³è€Œç›´æ¥å‘å¾€ç›®æ ‡ä¸»æœº
+  Input:          sockId: è®¾ç½®çš„socketID
+  Output:         æ— 
+  Return:         ETERROR - å¤„ç†å¤±è´¥  ETOK - å¤„ç†æˆåŠŸ
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetSockDontRoute (EFD_T sockId);
 
 /************************************************************************
   Function:       IsIpAddrV6MappedFromV4
-  Description:    ÅĞ¶ÏIPv6ASCIIÂëĞÎÊ½µÄ×Ö·û´®µÄµØÖ·ÊÇ·ñÊÇÓÉIPv4µØÖ·Ó³Éä¶øÀ´
-  Input:          IPAddrv6: IPv6µØÖ·×Ö·û´®Ö¸Õë
-  Output:         ÎŞ
-  Return:         ETFALSE - ÅĞ¶ÏÊ§°Ü(²»Í¬/Òì³£)  ETTRUE - ÅĞ¶Ï³É¹¦(ÏàÍ¬)
-  Others:         ÎŞ
+  Description:    åˆ¤æ–­IPv6ASCIIç å½¢å¼çš„å­—ç¬¦ä¸²çš„åœ°å€æ˜¯å¦æ˜¯ç”±IPv4åœ°å€æ˜ å°„è€Œæ¥
+  Input:          IPAddrv6: IPv6åœ°å€å­—ç¬¦ä¸²æŒ‡é’ˆ
+  Output:         æ— 
+  Return:         ETFALSE - åˆ¤æ–­å¤±è´¥(ä¸åŒ/å¼‚å¸¸)  ETTRUE - åˆ¤æ–­æˆåŠŸ(ç›¸åŒ)
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 IsIpAddrV6MappedFromV4 (ECHAR * IPAddrv6);
 
 /************************************************************************
   Function:       IsIpAddrV6CompatV4
-  Description:    ÅĞ¶ÏIPv6ASCIIÂëĞÎÊ½µÄ×Ö·û´®µÄµØÖ·ÊÇ·ñºÍIPv4µØÖ·¼æÈİ
-  Input:          IPAddrv6: IPv6µØÖ·×Ö·û´®Ö¸Õë
-  Output:         ÎŞ
-  Return:         ETFALSE - ÅĞ¶ÏÊ§°Ü(²»Í¬/Òì³£)  ETTRUE - ÅĞ¶Ï³É¹¦(ÏàÍ¬)
-  Others:         ÎŞ
+  Description:    åˆ¤æ–­IPv6ASCIIç å½¢å¼çš„å­—ç¬¦ä¸²çš„åœ°å€æ˜¯å¦å’ŒIPv4åœ°å€å…¼å®¹
+  Input:          IPAddrv6: IPv6åœ°å€å­—ç¬¦ä¸²æŒ‡é’ˆ
+  Output:         æ— 
+  Return:         ETFALSE - åˆ¤æ–­å¤±è´¥(ä¸åŒ/å¼‚å¸¸)  ETTRUE - åˆ¤æ–­æˆåŠŸ(ç›¸åŒ)
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 IsIpAddrV6CompatV4 (ECHAR * IPAddrv6);
 
 /************************************************************************
   Function:       SetSockRCVBuffer
-  Description:    ÉèÖÃSocket½ÓÊÕ»º³åÇø´óĞ¡
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-                  bufferSize: ÉèÖÃµÄ´óĞ¡Öµ
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
+  Description:    è®¾ç½®Socketæ¥æ”¶ç¼“å†²åŒºå¤§å°
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+                  bufferSize: è®¾ç½®çš„å¤§å°å€¼
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
 ************************************************************************/
 extern EINT32 SetSockRCVBuffer (EFD_T sock, EINT32 bufferSize);
 
 /************************************************************************
   Function:       GetSockRCVBuffer
-  Description:    »ñÈ¡Socket½ÓÊÕ»º³åÇø´óĞ¡
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:bufferSize, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
+  Description:    è·å–Socketæ¥æ”¶ç¼“å†²åŒºå¤§å°
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:bufferSize, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
 ************************************************************************/
 extern EINT32 GetSockRCVBuffer (EFD_T sock);
 
 /************************************************************************
   Function:       SetSockRCVBuffer
-  Description:    ÉèÖÃSocket·¢ËÍ»º³åÇø´óĞ¡
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-                  bufferSize: ÉèÖÃµÄ´óĞ¡Öµ
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
+  Description:    è®¾ç½®Socketå‘é€ç¼“å†²åŒºå¤§å°
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+                  bufferSize: è®¾ç½®çš„å¤§å°å€¼
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
 ************************************************************************/
 extern EINT32 SetSockSNDBuffer (EFD_T sock, EINT32 bufferSize);
 
 /************************************************************************
   Function:       GetSockRCVBuffer
-  Description:    »ñÈ¡Socket·¢ËÍ»º³åÇø´óĞ¡
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:bufferSize, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
+  Description:    è·å–Socketå‘é€ç¼“å†²åŒºå¤§å°
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:bufferSize, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
 ************************************************************************/
 extern EINT32 GetSockSNDBuffer (EFD_T sock);
 
 /************************************************************************
   Function:       SetSockRCVLowWat
-  Description:    ÉèÖÃSocket½ÓÊÕ»º³åÇøµÍË®Î»±ê¼Ç
-                  µÍË®Î»±ê¼ÇÓÉIO¸´ÓÃº¯Êıselect¡¢poll¡¢epollº¯ÊıÊ¹ÓÃ
-                  ÆäÖµÎªº¯Êı·µ»ØÊ±Ì×½Ó×Ö½ÓÊÕ/·¢ËÍ»º³åÇøÖĞËùĞèµÄ×îÉÙÊı¾İÁ¿
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-                  bufferSize: ÉèÖÃµÄ´óĞ¡Öµ
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
+  Description:    è®¾ç½®Socketæ¥æ”¶ç¼“å†²åŒºä½æ°´ä½æ ‡è®°
+                  ä½æ°´ä½æ ‡è®°ç”±IOå¤ç”¨å‡½æ•°selectã€pollã€epollå‡½æ•°ä½¿ç”¨
+                  å…¶å€¼ä¸ºå‡½æ•°è¿”å›æ—¶å¥—æ¥å­—æ¥æ”¶/å‘é€ç¼“å†²åŒºä¸­æ‰€éœ€çš„æœ€å°‘æ•°æ®é‡
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+                  bufferSize: è®¾ç½®çš„å¤§å°å€¼
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
 ************************************************************************/
 extern EINT32 SetSockRCVLowWat (EFD_T sock, EINT32 bufferSize);
 
 /************************************************************************
   Function:       GetSockRCVLowWat
-  Description:    »ñÈ¡Socket½ÓÊÕ»º³åÇøµÍË®Î»±ê¼Ç
-                  µÍË®Î»±ê¼ÇÓÉIO¸´ÓÃº¯Êıselect¡¢poll¡¢epollº¯ÊıÊ¹ÓÃ
-                  ÆäÖµÎªº¯Êı·µ»ØÊ±Ì×½Ó×Ö½ÓÊÕ/·¢ËÍ»º³åÇøÖĞËùĞèµÄ×îÉÙÊı¾İÁ¿
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:bufferSize, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
+  Description:    è·å–Socketæ¥æ”¶ç¼“å†²åŒºä½æ°´ä½æ ‡è®°
+                  ä½æ°´ä½æ ‡è®°ç”±IOå¤ç”¨å‡½æ•°selectã€pollã€epollå‡½æ•°ä½¿ç”¨
+                  å…¶å€¼ä¸ºå‡½æ•°è¿”å›æ—¶å¥—æ¥å­—æ¥æ”¶/å‘é€ç¼“å†²åŒºä¸­æ‰€éœ€çš„æœ€å°‘æ•°æ®é‡
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:bufferSize, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
 ************************************************************************/
 extern EINT32 GetSockRCVLowWat (EFD_T sock);
 
 /************************************************************************
   Function:       SetSockSNDLowWat
-  Description:    ÉèÖÃSocket·¢ËÍ»º³åÇøµÍË®Î»±ê¼Ç
-                  µÍË®Î»±ê¼ÇÓÉIO¸´ÓÃº¯Êıselect¡¢poll¡¢epollº¯ÊıÊ¹ÓÃ
-                  ÆäÖµÎªº¯Êı·µ»ØÊ±Ì×½Ó×Ö½ÓÊÕ/·¢ËÍ»º³åÇøÖĞËùĞèµÄ×îÉÙÊı¾İÁ¿
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-                  bufferSize: ÉèÖÃµÄ´óĞ¡Öµ
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
+  Description:    è®¾ç½®Socketå‘é€ç¼“å†²åŒºä½æ°´ä½æ ‡è®°
+                  ä½æ°´ä½æ ‡è®°ç”±IOå¤ç”¨å‡½æ•°selectã€pollã€epollå‡½æ•°ä½¿ç”¨
+                  å…¶å€¼ä¸ºå‡½æ•°è¿”å›æ—¶å¥—æ¥å­—æ¥æ”¶/å‘é€ç¼“å†²åŒºä¸­æ‰€éœ€çš„æœ€å°‘æ•°æ®é‡
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+                  bufferSize: è®¾ç½®çš„å¤§å°å€¼
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
 ************************************************************************/
 extern EINT32 SetSockSNDLowWat (EFD_T sock, EINT32 bufferSize);
 
 /************************************************************************
   Function:       GetSockSNDLowWat
-  Description:    »ñÈ¡Socket·¢ËÍ»º³åÇøµÍË®Î»±ê¼Ç
-                  µÍË®Î»±ê¼ÇÓÉIO¸´ÓÃº¯Êıselect¡¢poll¡¢epollº¯ÊıÊ¹ÓÃ
-                  ÆäÖµÎªº¯Êı·µ»ØÊ±Ì×½Ó×Ö½ÓÊÕ/·¢ËÍ»º³åÇøÖĞËùĞèµÄ×îÉÙÊı¾İÁ¿
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:bufferSize, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
+  Description:    è·å–Socketå‘é€ç¼“å†²åŒºä½æ°´ä½æ ‡è®°
+                  ä½æ°´ä½æ ‡è®°ç”±IOå¤ç”¨å‡½æ•°selectã€pollã€epollå‡½æ•°ä½¿ç”¨
+                  å…¶å€¼ä¸ºå‡½æ•°è¿”å›æ—¶å¥—æ¥å­—æ¥æ”¶/å‘é€ç¼“å†²åŒºä¸­æ‰€éœ€çš„æœ€å°‘æ•°æ®é‡
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:bufferSize, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
 ************************************************************************/
 extern EINT32 GetSockSNDLowWat (EFD_T sock);
 
 /************************************************************************
   Function:       SetSockRCVTimeout
-  Description:    ÉèÖÃSocketÌ×½Ó×ÖµÄ½ÓÊÕ³¬Ê±Öµ
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-                  time: ÉèÖÃµÄ³¬Ê±Öµ
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
-                  ½ÓÊÕ³¬Ê±Ó°ÏìµÄÖ÷Òªº¯Êı:read/readv/recv/recvfrom/recvmsg
-                  ¿ÉÒÔÍ¨¹ıÉèÖÃÖµÎª0À´½ûÖ¹³¬Ê±
+  Description:    è®¾ç½®Socketå¥—æ¥å­—çš„æ¥æ”¶è¶…æ—¶å€¼
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+                  time: è®¾ç½®çš„è¶…æ—¶å€¼
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
+                  æ¥æ”¶è¶…æ—¶å½±å“çš„ä¸»è¦å‡½æ•°:read/readv/recv/recvfrom/recvmsg
+                  å¯ä»¥é€šè¿‡è®¾ç½®å€¼ä¸º0æ¥ç¦æ­¢è¶…æ—¶
 ************************************************************************/
 extern EINT32 SetSockRCVTimeout (EFD_T sock, EINT32 time);
 
 /************************************************************************
   Function:       GetSockRCVTimeout
-  Description:    »ñÈ¡SocketÌ×½Ó×ÖµÄ½ÓÊÕ³¬Ê±Öµ
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:TimeoutValue, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
-                  ½ÓÊÕ³¬Ê±Ó°ÏìµÄÖ÷Òªº¯Êı:read/readv/recv/recvfrom/recvmsg
+  Description:    è·å–Socketå¥—æ¥å­—çš„æ¥æ”¶è¶…æ—¶å€¼
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:TimeoutValue, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
+                  æ¥æ”¶è¶…æ—¶å½±å“çš„ä¸»è¦å‡½æ•°:read/readv/recv/recvfrom/recvmsg
 ************************************************************************/
 extern EINT32 GetSockRCVTimeout (EFD_T sock);
 
 /************************************************************************
   Function:       SetSockSNDTimeout
-  Description:    ÉèÖÃSocketÌ×½Ó×ÖµÄ·¢ËÍ³¬Ê±Öµ
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-                  time: ÉèÖÃµÄ³¬Ê±Öµ
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
-                  ·¢ËÍ³¬Ê±Ó°ÏìµÄÖ÷Òªº¯Êı:write/writev/send/sendto/sendmsg
-                  ¿ÉÒÔÍ¨¹ıÉèÖÃÖµÎª0À´½ûÖ¹³¬Ê±
+  Description:    è®¾ç½®Socketå¥—æ¥å­—çš„å‘é€è¶…æ—¶å€¼
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+                  time: è®¾ç½®çš„è¶…æ—¶å€¼
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
+                  å‘é€è¶…æ—¶å½±å“çš„ä¸»è¦å‡½æ•°:write/writev/send/sendto/sendmsg
+                  å¯ä»¥é€šè¿‡è®¾ç½®å€¼ä¸º0æ¥ç¦æ­¢è¶…æ—¶
 ************************************************************************/
 extern EINT32 SetSockSNDTimeout (EFD_T sock, EINT32 time);
 
 /************************************************************************
   Function:       GetSockSNDTimeout
-  Description:    »ñÈ¡SocketÌ×½Ó×ÖµÄ·¢ËÍ³¬Ê±Öµ
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:TimeoutValue, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
-                  ·¢ËÍ³¬Ê±Ó°ÏìµÄÖ÷Òªº¯Êı:write/writev/send/sendto/sendmsg
+  Description:    è·å–Socketå¥—æ¥å­—çš„å‘é€è¶…æ—¶å€¼
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:TimeoutValue, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
+                  å‘é€è¶…æ—¶å½±å“çš„ä¸»è¦å‡½æ•°:write/writev/send/sendto/sendmsg
 ************************************************************************/
 extern EINT32 GetSockSNDTimeout (EFD_T sock);
 
 /************************************************************************
   Function:       SetSockLinger
-  Description:    ÉèÖÃSocketÌ×½Ó×Ö(ÈôÓĞÊı¾İ´ı·¢ËÍ)ÑÓ³Ù¹Ø±Õ
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-                  onoff: Îª1Ôò´ò¿ªlinger, Îª0Ôò¹Ø±Õlinger
-                  linger_time: linger¶ºÁôµÄÊ±¼ä, µ¥Î»ms
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
-                  lingerÖµÓÉclosesocket()µ÷ÓÃ,µ±ÓĞÊı¾İÃ»·¢ËÍÍê±ÏµÄÊ±ºòÈİĞí¶ºÁô
+  Description:    è®¾ç½®Socketå¥—æ¥å­—(è‹¥æœ‰æ•°æ®å¾…å‘é€)å»¶è¿Ÿå…³é—­
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+                  onoff: ä¸º1åˆ™æ‰“å¼€linger, ä¸º0åˆ™å…³é—­linger
+                  linger_time: lingeré€—ç•™çš„æ—¶é—´, å•ä½ms
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
+                  lingerå€¼ç”±closesocket()è°ƒç”¨,å½“æœ‰æ•°æ®æ²¡å‘é€å®Œæ¯•çš„æ—¶å€™å®¹è®¸é€—ç•™
 ************************************************************************/
 extern EINT32 SetSockLinger (EFD_T sock, EINT32 onoff, EINT32 linger_time);
 
 /************************************************************************
   Function:       GetSockLinger
-  Description:    »ñÈ¡SocketÌ×½Ó×Ö(ÈôÓĞÊı¾İ´ı·¢ËÍ)ÑÓ³Ù¹Ø±ÕÊ±¼ä
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:linger_time¶ºÁôµÄÊ±¼ä, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú¼æÈİIPv4/IPv6
-                  lingerÖµÓÉclosesocket()µ÷ÓÃ,µ±ÓĞÊı¾İÃ»·¢ËÍÍê±ÏµÄÊ±ºòÈİĞí¶ºÁô
+  Description:    è·å–Socketå¥—æ¥å­—(è‹¥æœ‰æ•°æ®å¾…å‘é€)å»¶è¿Ÿå…³é—­æ—¶é—´
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:linger_timeé€—ç•™çš„æ—¶é—´, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£å…¼å®¹IPv4/IPv6
+                  lingerå€¼ç”±closesocket()è°ƒç”¨,å½“æœ‰æ•°æ®æ²¡å‘é€å®Œæ¯•çš„æ—¶å€™å®¹è®¸é€—ç•™
 ************************************************************************/
 extern EINT32 GetSockLinger (EFD_T sock);
 
 /************************************************************************
   Function:       GetIfIndex
-  Description:    ¸ù¾İÍø¿ÚÃû»ñÈ¡ÆäË÷ÒıÖµ
-  Input:          ifname:Íø¿ÚÃû×Ö·û´®µØÖ·
-  Output:         ÎŞ
-  Return:         ³É¹¦:IfIndex, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿ÚÊÊÓÃlinux/vxworks
+  Description:    æ ¹æ®ç½‘å£åè·å–å…¶ç´¢å¼•å€¼
+  Input:          ifname:ç½‘å£åå­—ç¬¦ä¸²åœ°å€
+  Output:         æ— 
+  Return:         æˆåŠŸ:IfIndex, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£é€‚ç”¨linux/vxworks
 ************************************************************************/
 extern IfIndex GetIfIndex(ECHAR * ifname);
 
 /************************************************************************
   Function:       GetIfName
-  Description:    ¸ù¾İÍø¿ÚË÷ÒıÖµ»ñÈ¡ÆäÃû×Ö
-  Input:          ifindex:Íø¿ÚË÷ÒıÖµ
-  Output:         ifname:Íø¿ÚÃû×Ö·û´®µØÖ·
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿ÚÊÊÓÃlinux/vxworks
+  Description:    æ ¹æ®ç½‘å£ç´¢å¼•å€¼è·å–å…¶åå­—
+  Input:          ifindex:ç½‘å£ç´¢å¼•å€¼
+  Output:         ifname:ç½‘å£åå­—ç¬¦ä¸²åœ°å€
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£é€‚ç”¨linux/vxworks
 ************************************************************************/
 extern EINT32 GetIfName(IfIndex ifindex, ECHAR * ifname);
 
 /************************************************************************
   Function:       OpenRawSocket
-  Description:    ´ò¿ªÒ»¸öÔ­Ê¼IPv4 Socket
-  Input:          protocol:½ÓÊÕµÄIPÊı¾İ°üÀàĞÍ
-  Output:         ÎŞ
-  Return:         ³É¹¦:Socket ¾ä±ú, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ‰“å¼€ä¸€ä¸ªåŸå§‹IPv4 Socket
+  Input:          protocol:æ¥æ”¶çš„IPæ•°æ®åŒ…ç±»å‹
+  Output:         æ— 
+  Return:         æˆåŠŸ:Socket å¥æŸ„, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EFD_T OpenRawSocket (EINT32 protocol);
 
 /************************************************************************
   Function:       OpenSocket
-  Description:    ´ò¿ªÒ»¸öIPv4 Socket
-  Input:          type:ESOCK_STREAM:stream socket£¬ESOCK_DGRAM:datagram socket£¬
-  Output:         ÎŞ
-  Return:         ³É¹¦:Socket ¾ä±ú, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ‰“å¼€ä¸€ä¸ªIPv4 Socket
+  Input:          type:ESOCK_STREAM:stream socketï¼ŒESOCK_DGRAM:datagram socketï¼Œ
+  Output:         æ— 
+  Return:         æˆåŠŸ:Socket å¥æŸ„, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EFD_T OpenSocket (EINT32 type);
 
 /************************************************************************
   Function:       SetSocketNonblock
-  Description:    ½«IPv4 SocketÉèÖÃÎª·Ç×èÈû·½Ê½
-  Input:          sockv4:Socket¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å°†IPv4 Socketè®¾ç½®ä¸ºéé˜»å¡æ–¹å¼
+  Input:          sockv4:Socketå¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetSocketNonblock (EFD_T sockv4);
 
 /************************************************************************
 Function:       SetSocketLoosRoute
-Description:    ½«IPv4 SocketÉèÖÃÎªËÉÉ¢Â·ÓÉÄ£Ê½
-Input:          sockv4:Socket¾ä±ú, addr:Ö¸ÏòÂ·ÓÉIPµØÖ·ÁĞ±íµÄÖ¸Õë, num:Â·ÓÉ±íÖĞÂ·ÓÉµØÖ·µÄ¸öÊı
-Output:         ÎŞ
-Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-Others:         ÎŞ
+Description:    å°†IPv4 Socketè®¾ç½®ä¸ºæ¾æ•£è·¯ç”±æ¨¡å¼
+Input:          sockv4:Socketå¥æŸ„, addr:æŒ‡å‘è·¯ç”±IPåœ°å€åˆ—è¡¨çš„æŒ‡é’ˆ, num:è·¯ç”±è¡¨ä¸­è·¯ç”±åœ°å€çš„ä¸ªæ•°
+Output:         æ— 
+Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+Others:         æ— 
 ************************************************************************/
 extern EINT32 SetSocketLoosRoute (EFD_T sockv4, EUINT32 * addr, EUINT32 num);
 
 /************************************************************************
   Function:       SetSocketQos
-  Description:    ÉèÖÃIPv4 socketµÄqosÀàĞÍ
-  Input:          sockv4:Socket¾ä±ú; buf[]: »º´æ; qos:qosÀàĞÍ;
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®IPv4 socketçš„qosç±»å‹
+  Input:          sockv4:Socketå¥æŸ„; buf[]: ç¼“å­˜; qos:qosç±»å‹;
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetSocketQos (EFD_T sockv4, EUINT32 qos);
 
 /************************************************************************
   Function:       BindSocket
-  Description:    ½«IPv4 SocketÓë±¾µØ¶Ë¿Ú°ó¶¨
-  Input:          sockv4:Socket¾ä±ú, port: ¶Ë¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å°†IPv4 Socketä¸æœ¬åœ°ç«¯å£ç»‘å®š
+  Input:          sockv4:Socketå¥æŸ„, port: ç«¯å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 BindSocket (EFD_T sockv4, EUINT16 port);
 
 /************************************************************************
   Function:       BindSrcIpSocket
-  Description:    ½«IPv4 SocketÓë±¾µØ¶Ë¿Ú°ó¶¨
-  Input:          sockv4: Socket¾ä±ú
-                   srcIp: ipµØÖ·
-                   port: ¶Ë¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å°†IPv4 Socketä¸æœ¬åœ°ç«¯å£ç»‘å®š
+  Input:          sockv4: Socketå¥æŸ„
+                   srcIp: ipåœ°å€
+                   port: ç«¯å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 BindSrcIpSocket (EFD_T sockv4, EUINT32 srcIp, EUINT16 port);
 
 /************************************************************************
   Function:       ListenSocket
-  Description:    Æô¶¯IPv4 Socket¼àÌı
-  Input:          sockv4:Socket¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å¯åŠ¨IPv4 Socketç›‘å¬
+  Input:          sockv4:Socketå¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 ListenSocket (EFD_T sockv4);
 
 /************************************************************************
   Function:       AcceptSocket
-  Description:    ½ÓÊÜIPv4¿Í»§¶ËµÄÇëÇó
-  Input:          sockv4:Socket¾ä±ú;
-  Output:         pClientIpAddr: ¿Í»§¶ËIPµØÖ·
-  Return:         ³É¹¦:ĞÂ½¨µÄSocket¾ä±ú , Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ¥å—IPv4å®¢æˆ·ç«¯çš„è¯·æ±‚
+  Input:          sockv4:Socketå¥æŸ„;
+  Output:         pClientIpAddr: å®¢æˆ·ç«¯IPåœ°å€
+  Return:         æˆåŠŸ:æ–°å»ºçš„Socketå¥æŸ„ , å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EADDR_T AcceptSocket (EFD_T sockv4, EUINT32 * pClientIpAddr);
 
 /************************************************************************
   Function:       ConnectSocket
-  Description:    IPv4¿Í»§¶Ëºô½Ğ·şÎñÆ÷
-  Input:          sockv4:Socket¾ä±ú; remoteIpAddr: ·şÎñÆ÷IPµØÖ·;port:¶Ë¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK , Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    IPv4å®¢æˆ·ç«¯å‘¼å«æœåŠ¡å™¨
+  Input:          sockv4:Socketå¥æŸ„; remoteIpAddr: æœåŠ¡å™¨IPåœ°å€;port:ç«¯å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK , å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 ConnectSocket (EFD_T sockv4, EUINT32 remoteIpAddr, EUINT16 port);
 
 /************************************************************************
   Function:       ReadFrame
-  Description:    ½ÓÊÕIPv4 UDPÖ¡Êı¾İ
-  Input:          sockv4:Socket¾ä±ú; len:»º³åÇøµÄ³¤¶È
-  Output:         buf[]: »º´æ; pRemoteIpAddr: Êı¾İÖ¡Ô´IPµØÖ·
-  Return:         ³É¹¦:´óÓÚ0£¬½ÓÊÕµ½Êµ¼ÊµÄÊı¾İ×Ö½ÚÊı, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ¥æ”¶IPv4 UDPå¸§æ•°æ®
+  Input:          sockv4:Socketå¥æŸ„; len:ç¼“å†²åŒºçš„é•¿åº¦
+  Output:         buf[]: ç¼“å­˜; pRemoteIpAddr: æ•°æ®å¸§æºIPåœ°å€
+  Return:         æˆåŠŸ:å¤§äº0ï¼Œæ¥æ”¶åˆ°å®é™…çš„æ•°æ®å­—èŠ‚æ•°, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 ReadFrame (EFD_T sockv4, ECHAR buf[], EUINT32 len, EUINT32 * pRemoteIpAddr);
 
 /************************************************************************
   Function:       ReadFrameExt
-  Description:    ½ÓÊÕIPv4 UDPÖ¡Êı¾İ
-  Input:          sockv4: Socket¾ä±ú; len:»º³åÇøµÄ³¤¶È
-  Output:         buf[]: »º´æ; pRemoteIpAddr: Êı¾İÖ¡Ô´IPµØÖ·; pRemotePort: Êı¾İÖ¡Ô´¶Ë¿Ú
-  Return:         ³É¹¦:´óÓÚ0£¬½ÓÊÕµ½Êµ¼ÊµÄÊı¾İ×Ö½ÚÊı, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ¥æ”¶IPv4 UDPå¸§æ•°æ®
+  Input:          sockv4: Socketå¥æŸ„; len:ç¼“å†²åŒºçš„é•¿åº¦
+  Output:         buf[]: ç¼“å­˜; pRemoteIpAddr: æ•°æ®å¸§æºIPåœ°å€; pRemotePort: æ•°æ®å¸§æºç«¯å£
+  Return:         æˆåŠŸ:å¤§äº0ï¼Œæ¥æ”¶åˆ°å®é™…çš„æ•°æ®å­—èŠ‚æ•°, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 ReadFrameExt (EFD_T sockv4, ECHAR buf[], EUINT32 len, EUINT32* pRemoteIpAddr, EUINT32 * pRemotePort);
 
 /************************************************************************
   Function:       SendFrame
-  Description:    ·¢ËÍIPv4 UDPÖ¡Êı¾İ
-  Input:          sockv4:Socket¾ä±ú; buf[]: »º´æ; len:»º³åÇøµÄ³¤¶È;
-                   remoteIpAddr: Êı¾İÖ¡Ä¿µÄIPµØÖ·;port:¶Ë¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦: ·¢ËÍµÄÊµ¼ÊÊı¾İ×Ö½ÚÊı, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å‘é€IPv4 UDPå¸§æ•°æ®
+  Input:          sockv4:Socketå¥æŸ„; buf[]: ç¼“å­˜; len:ç¼“å†²åŒºçš„é•¿åº¦;
+                   remoteIpAddr: æ•°æ®å¸§ç›®çš„IPåœ°å€;port:ç«¯å£
+  Output:         æ— 
+  Return:         æˆåŠŸ: å‘é€çš„å®é™…æ•°æ®å­—èŠ‚æ•°, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SendFrame (EFD_T sockv4, ECHAR buf[], EUINT32 len, EINT32 remoteIpAddr, EUINT16 port);
 
 /************************************************************************
   Function:       ReadStream
-  Description:    ½ÓÊÕIPv4Ö¡Êı¾İµÄ»º³åÇø
-  Input:          sockv4:Socket¾ä±ú; buf[]: »º´æ; len:»º³åÇøµÄ³¤¶È;
-  Output:         ÎŞ
-  Return:         ³É¹¦:´óÓÚ0£¬³É¹¦£¬½ÓÊÕµ½Êµ¼ÊµÄÊı¾İ×Ö½ÚÊı, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ¥æ”¶IPv4å¸§æ•°æ®çš„ç¼“å†²åŒº
+  Input:          sockv4:Socketå¥æŸ„; buf[]: ç¼“å­˜; len:ç¼“å†²åŒºçš„é•¿åº¦;
+  Output:         æ— 
+  Return:         æˆåŠŸ:å¤§äº0ï¼ŒæˆåŠŸï¼Œæ¥æ”¶åˆ°å®é™…çš„æ•°æ®å­—èŠ‚æ•°, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 ReadStream (EFD_T sockv4, ECHAR buf[], EINT32 len);
 
 /************************************************************************
   Function:       SendStream
-  Description:    ·¢ËÍIPv4Ö¡Êı¾İ
-  Input:          sockv4:Socket¾ä±ú; buf[]: »º´æ; len:»º³åÇøµÄ³¤¶È;
-  Output:         ÎŞ
-  Return:         ³É¹¦:´óÓÚ0£¬³É¹¦£¬·¢ËÍµÄÊµ¼ÊÊı¾İ×Ö½ÚÊı, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å‘é€IPv4å¸§æ•°æ®
+  Input:          sockv4:Socketå¥æŸ„; buf[]: ç¼“å­˜; len:ç¼“å†²åŒºçš„é•¿åº¦;
+  Output:         æ— 
+  Return:         æˆåŠŸ:å¤§äº0ï¼ŒæˆåŠŸï¼Œå‘é€çš„å®é™…æ•°æ®å­—èŠ‚æ•°, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SendStream (EFD_T sockv4, ECHAR buf[], EINT32 len);
 
 /************************************************************************
   Function:       GetIpAddr
-  Description:    ½«ASCIIÂëĞÎÊ½µÄIPv4µØÖ·×ª»»³ÉÕûĞÍ
-  Input:          s:Ö¸ÏòIPv4µØÖ·ASCIIÂëĞÎÊ½µÄÖ¸Õë
-  Output:         ÎŞ
-  Return:         IPµØÖ·µÄÕûÊıÀàĞÍ
-  Others:         ÎŞ
+  Description:    å°†ASCIIç å½¢å¼çš„IPv4åœ°å€è½¬æ¢æˆæ•´å‹
+  Input:          s:æŒ‡å‘IPv4åœ°å€ASCIIç å½¢å¼çš„æŒ‡é’ˆ
+  Output:         æ— 
+  Return:         IPåœ°å€çš„æ•´æ•°ç±»å‹
+  Others:         æ— 
 ************************************************************************/
 extern EUINT32 GetIpAddr (ECHAR * s);
 
 /************************************************************************
   Function:       GetIpStr
-  Description:    ½«ÕûĞÍµÄIPv4µØÖ·×ª»»³ÉASCIIÂëĞÎÊ½
-  Input:          ipAddr:ÕûÊıÀàĞÍµÄIPv4µØÖ·
-  Output:         s:Ö¸ÏòIPµØÖ·ASCIIÂëĞÎÊ½µÄÖ¸Õë
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å°†æ•´å‹çš„IPv4åœ°å€è½¬æ¢æˆASCIIç å½¢å¼
+  Input:          ipAddr:æ•´æ•°ç±»å‹çš„IPv4åœ°å€
+  Output:         s:æŒ‡å‘IPåœ°å€ASCIIç å½¢å¼çš„æŒ‡é’ˆ
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 GetIpStr (EUINT32 ipAddr, ECHAR * s);
 
 /************************************************************************
   Function:       ReadFromTo
-  Description:    Ê¹ÓÃrecvmsg½ÓÊÕIPv4Êı¾İ°ü£¬Ê¹µÃ¿ÉÒÔ»ñÈ¡ipÍ·µÄÄ¿±êµØÖ·
-  Input:          sockv4: ½ÓÊÕÌ×½Ó×Ö
-                  pRecvBuf: ´æ·ÅÊı¾İµÄ»º³åÇø
-                  bufLen: »º³åÇø´óĞ¡
-                  pSrcIp: Êı¾İ°üµÄÔ´¶ËµØÖ·(ÍøÂç×Ö½ÚĞò)
-                  pSrcPort: Êı¾İ°üµÄÔ´¶Ë¿ÚºÅ(Ö÷»úĞò)
-                  pDstIp: Êı¾İ°üµÄÄ¿µÄµØÖ·(ÍøÂç×Ö½ÚĞò)
-                  pDstPort: Êı¾İ°üµÄÄ¿µÄ¶Ë¿ÚºÅ(Ö÷»ú×Ö½ÚĞò)
-  Output:         ÎŞ
-  Return:         ³É¹¦: ½ÓÊÕÊı¾İµÄ³¤¶È;Ê§°Ü: ETERROR
-  Others:         ´Ë½Ó¿ÚÓÃÓÚlinux\vxworks\unix
+  Description:    ä½¿ç”¨recvmsgæ¥æ”¶IPv4æ•°æ®åŒ…ï¼Œä½¿å¾—å¯ä»¥è·å–ipå¤´çš„ç›®æ ‡åœ°å€
+  Input:          sockv4: æ¥æ”¶å¥—æ¥å­—
+                  pRecvBuf: å­˜æ”¾æ•°æ®çš„ç¼“å†²åŒº
+                  bufLen: ç¼“å†²åŒºå¤§å°
+                  pSrcIp: æ•°æ®åŒ…çš„æºç«¯åœ°å€(ç½‘ç»œå­—èŠ‚åº)
+                  pSrcPort: æ•°æ®åŒ…çš„æºç«¯å£å·(ä¸»æœºåº)
+                  pDstIp: æ•°æ®åŒ…çš„ç›®çš„åœ°å€(ç½‘ç»œå­—èŠ‚åº)
+                  pDstPort: æ•°æ®åŒ…çš„ç›®çš„ç«¯å£å·(ä¸»æœºå­—èŠ‚åº)
+  Output:         æ— 
+  Return:         æˆåŠŸ: æ¥æ”¶æ•°æ®çš„é•¿åº¦;å¤±è´¥: ETERROR
+  Others:         æ­¤æ¥å£ç”¨äºlinux\vxworks\unix
 ************************************************************************/
 extern EINT32 ReadFromTo (EFD_T sockv4, void * pRecvBuf, EUINT16 bufLen,
     EUINT32 * pSrcIp, EUINT32 * pDstIp);
 
 /************************************************************************
   Function:       EtCreateRoute
-  Description:    Ôö¼ÓIPv4Â·ÓÉ
-  Input:          pDestIpAddr: Ä¿±êµØÖ·
-                  intIpMask: Ä¿±êµØÖ·ÑÚÂë
-                  pNextHop: ÏÂÒ»ÌõµØÖ·
-  Output:         ÎŞ
+  Description:    å¢åŠ IPv4è·¯ç”±
+  Input:          pDestIpAddr: ç›®æ ‡åœ°å€
+                  intIpMask: ç›®æ ‡åœ°å€æ©ç 
+                  pNextHop: ä¸‹ä¸€æ¡åœ°å€
+  Output:         æ— 
   Return:
-  Others:         ´Ë½Ó¿ÚÓÃÓÚlinux\vxworks
+  Others:         æ­¤æ¥å£ç”¨äºlinux\vxworks
 ************************************************************************/
 #if defined(LINUX)
 extern EINT32 EtCreateRoute (ECHAR * pDestIpAddr,
@@ -697,13 +697,13 @@ extern EINT32 EtCreateRoute (ECHAR * pDestIpAddr,
 
 /************************************************************************
   Function:       EtDeleteRoute
-  Description:    É¾³ıIPv4Â·ÓÉ
-  Input:          pDestIpAddr: Ä¿±êµØÖ·
-                  intIpMask: Ä¿±êµØÖ·ÑÚÂë
-                  pNextHop: ÏÂÒ»ÌõµØÖ·
-  Output:         ÎŞ
+  Description:    åˆ é™¤IPv4è·¯ç”±
+  Input:          pDestIpAddr: ç›®æ ‡åœ°å€
+                  intIpMask: ç›®æ ‡åœ°å€æ©ç 
+                  pNextHop: ä¸‹ä¸€æ¡åœ°å€
+  Output:         æ— 
   Return:
-  Others:         ´Ë½Ó¿ÚÓÃÓÚlinux\vxworks
+  Others:         æ­¤æ¥å£ç”¨äºlinux\vxworks
 ************************************************************************/
 #if defined(LINUX)
 extern EINT32 EtDeleteRoute (ECHAR * pDestIpAddr,
@@ -714,428 +714,428 @@ extern EINT32 EtDeleteRoute (ECHAR * pDestIpAddr,
 
 /************************************************************************
   Function:       OpenSockBroadCast
-  Description:    ´ò¿ªIPv4 SocketÔÊĞí·¢ËÍ¹ã²¥Êı¾İ
-  Input:          sockv4: Ì×½Ó×Ö
-  Output:         ÎŞ
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  ETOK - ´¦Àí³É¹¦
-  Others:         1¡¢IPv6»ò²»´æÔÚ¹ã²¥ĞÎÊ½
-                  2¡¢½öUDPĞ­Òé¿ÉÊ¹ÓÃ´Ë½Ó¿Ú
+  Description:    æ‰“å¼€IPv4 Socketå…è®¸å‘é€å¹¿æ’­æ•°æ®
+  Input:          sockv4: å¥—æ¥å­—
+  Output:         æ— 
+  Return:         ETERROR - å¤„ç†å¤±è´¥  ETOK - å¤„ç†æˆåŠŸ
+  Others:         1ã€IPv6æˆ–ä¸å­˜åœ¨å¹¿æ’­å½¢å¼
+                  2ã€ä»…UDPåè®®å¯ä½¿ç”¨æ­¤æ¥å£
 ************************************************************************/
 extern EINT32 OpenSockBroadCast (EFD_T sockv4);
 
 /************************************************************************
   Function:       CloseSockBroadCast
-  Description:    ¹Ø±ÕIPv4 SocketÔÊĞí·¢ËÍ¹ã²¥Êı¾İ
-  Input:          sockv4: Ì×½Ó×Ö
-  Output:         ÎŞ
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  ETOK - ´¦Àí³É¹¦
-  Others:         1¡¢IPv6»ò²»´æÔÚ¹ã²¥ĞÎÊ½
-                  2¡¢½öUDPĞ­Òé¿ÉÊ¹ÓÃ´Ë½Ó¿Ú
+  Description:    å…³é—­IPv4 Socketå…è®¸å‘é€å¹¿æ’­æ•°æ®
+  Input:          sockv4: å¥—æ¥å­—
+  Output:         æ— 
+  Return:         ETERROR - å¤„ç†å¤±è´¥  ETOK - å¤„ç†æˆåŠŸ
+  Others:         1ã€IPv6æˆ–ä¸å­˜åœ¨å¹¿æ’­å½¢å¼
+                  2ã€ä»…UDPåè®®å¯ä½¿ç”¨æ­¤æ¥å£
 ************************************************************************/
 extern EINT32 CloseSockBroadCast (EFD_T sockv4);
 
 /************************************************************************
   Function:       SetIPMulticastTTL
-  Description:    ÉèÖÃSocket IPv4Êı¾İ°üÖĞ¶à²¥µØÖ·TTL
-  Input:          sockv4:Ì×½Ó×Ö¾ä±ú
-                  TTL:´æ»îÊ±¼ä
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®Socket IPv4æ•°æ®åŒ…ä¸­å¤šæ’­åœ°å€TTL
+  Input:          sockv4:å¥—æ¥å­—å¥æŸ„
+                  TTL:å­˜æ´»æ—¶é—´
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetIPMulticastTTL (EINT32 TTL, EFD_T sockv4);
 
 /************************************************************************
   Function:       GetIPMulticastTTL
-  Description:    »ñÈ¡Socket IPv4Êı¾İ°üÖĞ¶à²¥µØÖ·TTL
-  Input:          sockv4:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:hoplimit, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è·å–Socket IPv4æ•°æ®åŒ…ä¸­å¤šæ’­åœ°å€TTL
+  Input:          sockv4:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:hoplimit, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 GetIPMulticastTTL (EFD_T sockv4);
 
 /************************************************************************
   Function:       SetIPMCInterface
-  Description:    ÉèÖÃSocket IPv4¶à²¥Íâ³ö½Ó¿Ú(Íø¿Ú)
-  Input:          sockv4:Ì×½Ó×Ö¾ä±ú
-                  If:Íâ³ö½Ó¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®Socket IPv4å¤šæ’­å¤–å‡ºæ¥å£(ç½‘å£)
+  Input:          sockv4:å¥—æ¥å­—å¥æŸ„
+                  If:å¤–å‡ºæ¥å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetIPMCInterface (IfIndex If, EFD_T sockv4);
 
 /************************************************************************
   Function:       GetIPMCInterface
-  Description:    »ñÈ¡Socket IPv4¶à²¥Íâ³ö½Ó¿Ú(Íø¿Ú)
-  Input:          sockv4:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:Íâ³ö½Ó¿ÚIf, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è·å–Socket IPv4å¤šæ’­å¤–å‡ºæ¥å£(ç½‘å£)
+  Input:          sockv4:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:å¤–å‡ºæ¥å£If, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern IfIndex GetIPMCInterface (EFD_T sockv4);
 
 /************************************************************************
   Function:       SetIPUCInterface
-  Description:    ÉèÖÃSocket IPv4µ¥²¥Íâ³ö½Ó¿Ú(Íø¿Ú)
-  Input:          sockv4:Ì×½Ó×Ö¾ä±ú
-                  If:Íâ³ö½Ó¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®Socket IPv4å•æ’­å¤–å‡ºæ¥å£(ç½‘å£)
+  Input:          sockv4:å¥—æ¥å­—å¥æŸ„
+                  If:å¤–å‡ºæ¥å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetIPUCInterface (IfIndex If, EFD_T sockv4);
 
 /************************************************************************
   Function:       GetIPUCInterface
-  Description:    ÉèÖÃSocketIPv4µ¥²¥Íâ³ö½Ó¿Ú(Íø¿Ú)
-  Input:          sockv4:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:Íâ³ö½Ó¿ÚIf, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®SocketIPv4å•æ’­å¤–å‡ºæ¥å£(ç½‘å£)
+  Input:          sockv4:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:å¤–å‡ºæ¥å£If, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern IfIndex GetIPUCInterface (EFD_T sockv4);
 
 /************************************************************************
   Function:       SetIPIfLoop
-  Description:    ÉèÖÃSocket IPv4ÊÇ·ñ»·»Ø
-  Input:          sockv4:Ì×½Ó×Ö¾ä±ú
-                  IfLoop:ÊÇ·ñ»·»ØÅĞ¶¨ÖµETTRUE/ETFALSE
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®Socket IPv4æ˜¯å¦ç¯å›
+  Input:          sockv4:å¥—æ¥å­—å¥æŸ„
+                  IfLoop:æ˜¯å¦ç¯å›åˆ¤å®šå€¼ETTRUE/ETFALSE
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetIPIfLoop (EUCHAR IfLoop, EFD_T sockv4);
 
 /************************************************************************
   Function:       GetIPIfLoop
-  Description:    »ñÈ¡Socket IPv4ÊÇ·ñ»·»Ø
-  Input:          sockv4:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:IfLoop(ETTRUE/ETFALSE), Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è·å–Socket IPv4æ˜¯å¦ç¯å›
+  Input:          sockv4:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:IfLoop(ETTRUE/ETFALSE), å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EUCHAR GetIPIfLoop (EFD_T sockv4);
 
 /************************************************************************
   Function:       SetIPMultiCast
-  Description:    ÉèÖÃSocket IPv4¶à²¥µØÖ·(¼ÓÈë¶à²¥×é)
-  Input:          Addr:¶à²¥µØÖ·
-                  sockv4:Ì×½Ó×Ö¾ä±ú
-                  IfAddr: ½øĞĞ×é²¥Í¨Ñ¶µÄ³ö¿Ú¶Ë¿ÚµØÖ·£¬
-                           ÈôÎª0ÔòÍ¨¹ıGetIPMCInterface»ñÈ¡
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         Ì×½Ó×ÖÀàĞÍ±ØĞëSOCK_DGRAM»òSOCK_RAW
+  Description:    è®¾ç½®Socket IPv4å¤šæ’­åœ°å€(åŠ å…¥å¤šæ’­ç»„)
+  Input:          Addr:å¤šæ’­åœ°å€
+                  sockv4:å¥—æ¥å­—å¥æŸ„
+                  IfAddr: è¿›è¡Œç»„æ’­é€šè®¯çš„å‡ºå£ç«¯å£åœ°å€ï¼Œ
+                           è‹¥ä¸º0åˆ™é€šè¿‡GetIPMCInterfaceè·å–
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         å¥—æ¥å­—ç±»å‹å¿…é¡»SOCK_DGRAMæˆ–SOCK_RAW
 ************************************************************************/
 extern EINT32 SetIPMultiCast (ECHAR * Addr, EFD_T sockv4, IfIndex IfAddr);
 
 /************************************************************************
   Function:       SetIPMultiCastExt
-  Description:    ÉèÖÃSocket IPv4¶à²¥µØÖ·(¼ÓÈë¶à²¥×é)
-  Input:          Addr:¶à²¥µØÖ·
-                  sockv4:Ì×½Ó×Ö¾ä±ú
-                  IfAddr: ½øĞĞ×é²¥Í¨Ñ¶µÄ³ö¿Ú¶Ë¿ÚµØÖ·£¬
-                           ÈôÎª0ÔòÍ¨¹ıGetIPMCInterface»ñÈ¡SrcAddr
-                  SrcAddr: Ô´IPv4µØÖ·
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         Ì×½Ó×ÖÀàĞÍ±ØĞëSOCK_DGRAM»òSOCK_RAW
+  Description:    è®¾ç½®Socket IPv4å¤šæ’­åœ°å€(åŠ å…¥å¤šæ’­ç»„)
+  Input:          Addr:å¤šæ’­åœ°å€
+                  sockv4:å¥—æ¥å­—å¥æŸ„
+                  IfAddr: è¿›è¡Œç»„æ’­é€šè®¯çš„å‡ºå£ç«¯å£åœ°å€ï¼Œ
+                           è‹¥ä¸º0åˆ™é€šè¿‡GetIPMCInterfaceè·å–SrcAddr
+                  SrcAddr: æºIPv4åœ°å€
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         å¥—æ¥å­—ç±»å‹å¿…é¡»SOCK_DGRAMæˆ–SOCK_RAW
 ************************************************************************/
 extern EINT32 SetIPMultiCastExt (ECHAR * Addr, EFD_T sockv4, IfIndex IfAddr, ECHAR * SrcAddr);
 
 /************************************************************************
   Function:       DropIPMultiCast
-  Description:    È¡ÏûSocket IPv4¶à²¥µØÖ·(Àë¿ª¶à²¥×é)
-  Input:          Addr:¶à²¥µØÖ·
-                  sockv4:Ì×½Ó×Ö¾ä±ú
-                  IfAddr: ½øĞĞ×é²¥Í¨Ñ¶µÄ³ö¿Ú¶Ë¿ÚµØÖ·£¬
-                           ÈôÎª0ÔòÍ¨¹ıGetIPMCInterface»ñÈ¡
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         Ì×½Ó×ÖÀàĞÍ±ØĞëSOCK_DGRAM»òSOCK_RAW
+  Description:    å–æ¶ˆSocket IPv4å¤šæ’­åœ°å€(ç¦»å¼€å¤šæ’­ç»„)
+  Input:          Addr:å¤šæ’­åœ°å€
+                  sockv4:å¥—æ¥å­—å¥æŸ„
+                  IfAddr: è¿›è¡Œç»„æ’­é€šè®¯çš„å‡ºå£ç«¯å£åœ°å€ï¼Œ
+                           è‹¥ä¸º0åˆ™é€šè¿‡GetIPMCInterfaceè·å–
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         å¥—æ¥å­—ç±»å‹å¿…é¡»SOCK_DGRAMæˆ–SOCK_RAW
 ************************************************************************/
 extern EINT32 DropIPMultiCast (ECHAR * Addr, EFD_T sockv4, IfIndex IfAddr);
 
 /************************************************************************
   Function:       DropIPMultiCastExt
-  Description:    È¡ÏûSocketIPv4¶à²¥µØÖ·(Àë¿ª¶à²¥×é)
-  Input:          Addr:¶à²¥µØÖ·
-                  sockv4:Ì×½Ó×Ö¾ä±ú
-                  IfAddr: ½øĞĞ×é²¥Í¨Ñ¶µÄ³ö¿Ú¶Ë¿ÚµØÖ·£¬
-                           ÈôÎª0ÔòÍ¨¹ıGetIPMCInterface»ñÈ¡
-                  SrcAddr: Ô´IPv4µØÖ·
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         Ì×½Ó×ÖÀàĞÍ±ØĞëSOCK_DGRAM»òSOCK_RAW
+  Description:    å–æ¶ˆSocketIPv4å¤šæ’­åœ°å€(ç¦»å¼€å¤šæ’­ç»„)
+  Input:          Addr:å¤šæ’­åœ°å€
+                  sockv4:å¥—æ¥å­—å¥æŸ„
+                  IfAddr: è¿›è¡Œç»„æ’­é€šè®¯çš„å‡ºå£ç«¯å£åœ°å€ï¼Œ
+                           è‹¥ä¸º0åˆ™é€šè¿‡GetIPMCInterfaceè·å–
+                  SrcAddr: æºIPv4åœ°å€
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         å¥—æ¥å­—ç±»å‹å¿…é¡»SOCK_DGRAMæˆ–SOCK_RAW
 ************************************************************************/
 extern EINT32 DropIPMultiCastExt (ECHAR * Addr, EFD_T sockv4, IfIndex IfAddr, ECHAR * SrcAddr);
 
 /************************************************************************
   Function:       BlockIPSource
-  Description:    ×èÈûSocketIP¶à²¥Ô´µØÖ·
-  Input:          Addr:¶à²¥Ô´µØÖ·
-                  sockv4:Ì×½Ó×Ö¾ä±ú
-                  IfAddr: ½øĞĞ×é²¥Í¨Ñ¶µÄ³ö¿Ú¶Ë¿ÚµØÖ·£¬
-                           ÈôÎª0ÔòÍ¨¹ıGetIPMCInterface»ñÈ¡
-                  SrcAddr: Ô´IPv4µØÖ·
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         Ì×½Ó×ÖÀàĞÍ±ØĞëSOCK_DGRAM»òSOCK_RAW
+  Description:    é˜»å¡SocketIPå¤šæ’­æºåœ°å€
+  Input:          Addr:å¤šæ’­æºåœ°å€
+                  sockv4:å¥—æ¥å­—å¥æŸ„
+                  IfAddr: è¿›è¡Œç»„æ’­é€šè®¯çš„å‡ºå£ç«¯å£åœ°å€ï¼Œ
+                           è‹¥ä¸º0åˆ™é€šè¿‡GetIPMCInterfaceè·å–
+                  SrcAddr: æºIPv4åœ°å€
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         å¥—æ¥å­—ç±»å‹å¿…é¡»SOCK_DGRAMæˆ–SOCK_RAW
 ************************************************************************/
 extern EINT32 BlockIPSource (ECHAR * Addr, EFD_T sockv4, IfIndex IfAddr, ECHAR * SrcAddr);
 
 /************************************************************************
   Function:       UnblockIPSource
-  Description:    ¿ªÍ¨×èÈûµÄSocketIP¶à²¥Ô´µØÖ·
-  Input:          Addr:¶à²¥Ô´µØÖ·
-                  sockv4:Ì×½Ó×Ö¾ä±ú
-                  IfAddr: ½øĞĞ×é²¥Í¨Ñ¶µÄ³ö¿Ú¶Ë¿ÚµØÖ·£¬
-                           ÈôÎª0ÔòÍ¨¹ıGetIPMCInterface»ñÈ¡
-                  SrcAddr: Ô´IPv4µØÖ·
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         Ì×½Ó×ÖÀàĞÍ±ØĞëSOCK_DGRAM»òSOCK_RAW
+  Description:    å¼€é€šé˜»å¡çš„SocketIPå¤šæ’­æºåœ°å€
+  Input:          Addr:å¤šæ’­æºåœ°å€
+                  sockv4:å¥—æ¥å­—å¥æŸ„
+                  IfAddr: è¿›è¡Œç»„æ’­é€šè®¯çš„å‡ºå£ç«¯å£åœ°å€ï¼Œ
+                           è‹¥ä¸º0åˆ™é€šè¿‡GetIPMCInterfaceè·å–
+                  SrcAddr: æºIPv4åœ°å€
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         å¥—æ¥å­—ç±»å‹å¿…é¡»SOCK_DGRAMæˆ–SOCK_RAW
 ************************************************************************/
 extern EINT32 UnblockIPSource (ECHAR* Addr, EFD_T sockv4, IfIndex IfAddr, ECHAR * SrcAddr);
 
 /************************************************************************
   Function:       GetIpAddrV6
-  Description:    ½«ASCIIÂëĞÎÊ½µÄIPµØÖ·×ª»»³ÉIPv6Addr_T½á¹¹ÌåÀàĞÍ
-  Input:          s:Ö¸ÏòIPµØÖ·ASCIIÂëĞÎÊ½µÄ×Ö·û´®Ö¸Õë
-  Output:         ÎŞ
-  Return:         IPµØÖ·µÄIPv6Addr_T½á¹¹ÌåÀàĞÍ
-  Others:         ÎŞ
+  Description:    å°†ASCIIç å½¢å¼çš„IPåœ°å€è½¬æ¢æˆIPv6Addr_Tç»“æ„ä½“ç±»å‹
+  Input:          s:æŒ‡å‘IPåœ°å€ASCIIç å½¢å¼çš„å­—ç¬¦ä¸²æŒ‡é’ˆ
+  Output:         æ— 
+  Return:         IPåœ°å€çš„IPv6Addr_Tç»“æ„ä½“ç±»å‹
+  Others:         æ— 
 ************************************************************************/
 extern IPv6Addr_T GetIpAddrV6 (ECHAR * s);
 
 /************************************************************************
   Function:       GetIpAddrV6Str
-  Description:    ½«IPv6Addr_T½á¹¹ÌåĞÎÊ½µÄIPv6µØÖ·×ª»»³ÉASCIIÂëĞÎÊ½µÄ×Ö·û´®
-  Input:          sin6_addr:IPv6µØÖ·½á¹¹Ìå
-  Output:         IpAddrV6Str:Ö¸ÏòIPv6µØÖ·ASCIIÂëĞÎÊ½µÄ×Ö·û´®Ö¸Õë
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  ETOK - ´¦Àí³É¹¦
-  Others:         ÎŞ
+  Description:    å°†IPv6Addr_Tç»“æ„ä½“å½¢å¼çš„IPv6åœ°å€è½¬æ¢æˆASCIIç å½¢å¼çš„å­—ç¬¦ä¸²
+  Input:          sin6_addr:IPv6åœ°å€ç»“æ„ä½“
+  Output:         IpAddrV6Str:æŒ‡å‘IPv6åœ°å€ASCIIç å½¢å¼çš„å­—ç¬¦ä¸²æŒ‡é’ˆ
+  Return:         ETERROR - å¤„ç†å¤±è´¥  ETOK - å¤„ç†æˆåŠŸ
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 GetIpAddrV6Str (IPv6Addr_T sin6_addr, ECHAR * IpAddrV6Str);
 
 /************************************************************************
   Function:       IsIpAddrV6Equal
-  Description:    ÅĞ¶ÏÁ½¸öIPv6ASCIIÂëĞÎÊ½µÄ×Ö·û´®µÄµØÖ·ÊÇ·ñÏàÍ¬
-  Input:          IPv6a: µÚÒ»¸öIPv6µØÖ·×Ö·û´®Ö¸Õë
-                   IPv6b: µÚ¶ş¸öIPv6µØÖ·×Ö·û´®Ö¸Õë
-  Output:         ÎŞ
-  Return:         ETFALSE - ÅĞ¶ÏÊ§°Ü(²»Í¬/Òì³£)  ETTRUE - ÅĞ¶Ï³É¹¦(ÏàÍ¬)
-  Others:         ÎŞ
+  Description:    åˆ¤æ–­ä¸¤ä¸ªIPv6ASCIIç å½¢å¼çš„å­—ç¬¦ä¸²çš„åœ°å€æ˜¯å¦ç›¸åŒ
+  Input:          IPv6a: ç¬¬ä¸€ä¸ªIPv6åœ°å€å­—ç¬¦ä¸²æŒ‡é’ˆ
+                   IPv6b: ç¬¬äºŒä¸ªIPv6åœ°å€å­—ç¬¦ä¸²æŒ‡é’ˆ
+  Output:         æ— 
+  Return:         ETFALSE - åˆ¤æ–­å¤±è´¥(ä¸åŒ/å¼‚å¸¸)  ETTRUE - åˆ¤æ–­æˆåŠŸ(ç›¸åŒ)
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 IsIpAddrV6Equal (ECHAR * IPv6a, ECHAR * IPv6b);
 
 /************************************************************************
   Function:       IsIpAddrV6LoopBack
-  Description:    ÅĞ¶ÏÒ»¸öIPv6ASCIIÂëĞÎÊ½µÄ×Ö·û´®µÄµØÖ·ÊÇ·ñ±íÊ¾»·»ØµØÖ·
-  Input:          IpAddrV6Str: IPv6µØÖ·×Ö·û´®Ö¸Õë
-  Output:         ÎŞ
-  Return:         ETFALSE - ÅĞ¶ÏÊ§°Ü(²»ÊÇ/Òì³£)  ETTRUE - ÅĞ¶Ï³É¹¦(ÊÇ)
-  Others:         ÎŞ
+  Description:    åˆ¤æ–­ä¸€ä¸ªIPv6ASCIIç å½¢å¼çš„å­—ç¬¦ä¸²çš„åœ°å€æ˜¯å¦è¡¨ç¤ºç¯å›åœ°å€
+  Input:          IpAddrV6Str: IPv6åœ°å€å­—ç¬¦ä¸²æŒ‡é’ˆ
+  Output:         æ— 
+  Return:         ETFALSE - åˆ¤æ–­å¤±è´¥(ä¸æ˜¯/å¼‚å¸¸)  ETTRUE - åˆ¤æ–­æˆåŠŸ(æ˜¯)
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 IsIpAddrV6LoopBack (ECHAR * IpAddrV6Str);
 
 /************************************************************************
   Function:       OpenRawSocketV6
-  Description:    ´ò¿ªÒ»¸öÔ­Ê¼IPv6 Socket
-  Input:          protocol:½ÓÊÕµÄIPÊı¾İ°üÀàĞÍ
-  Output:         ÎŞ
-  Return:         ³É¹¦:Socket ¾ä±ú, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ‰“å¼€ä¸€ä¸ªåŸå§‹IPv6 Socket
+  Input:          protocol:æ¥æ”¶çš„IPæ•°æ®åŒ…ç±»å‹
+  Output:         æ— 
+  Return:         æˆåŠŸ:Socket å¥æŸ„, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EFD_T OpenRawSocketV6 (EINT32 protocol);
 
 /************************************************************************
   Function:       OpenSocketV6
-  Description:    ´ò¿ªÒ»¸öIPv6 Socket
-  Input:          type:WSOCK_STREAM:stream socket£¬WSOCK_DGRAM:datagram socket£¬
-  Output:         ÎŞ
-  Return:         ³É¹¦:Socket ¾ä±ú, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ‰“å¼€ä¸€ä¸ªIPv6 Socket
+  Input:          type:WSOCK_STREAM:stream socketï¼ŒWSOCK_DGRAM:datagram socketï¼Œ
+  Output:         æ— 
+  Return:         æˆåŠŸ:Socket å¥æŸ„, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EFD_T OpenSocketV6 (EINT32 type);
 
 /************************************************************************
   Function:       SetSocketNonblockV6
-  Description:    ½«IPv6 SocketÉèÖÃÎª·Ç×èÈû·½Ê½
-  Input:          id:Socket¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å°†IPv6 Socketè®¾ç½®ä¸ºéé˜»å¡æ–¹å¼
+  Input:          id:Socketå¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetSocketNonblockV6 (EFD_T id);
 
 /************************************************************************
 Function:       SetSocketLoosRouteV6
-Description:    ½«IPv6 SocketÉèÖÃÎªËÉÉ¢Â·ÓÉÄ£Ê½/Ìí¼ÓÂ·ÓÉµØÖ·
-Input:          id: Socket¾ä±ú
-                segments: Íø¶Î×ÜÊı
-                addr: ÔÚÂ·ÓÉÊ×²¿ÖĞÌí¼ÓµÄÂ·ÓÉµØÖ·µÄÖ¸Õë
-Output:         ÎŞ
-Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-Others:         ´Ë½Ó¿Ú½öÊÊÓÃÓÚlinux/vxworks
+Description:    å°†IPv6 Socketè®¾ç½®ä¸ºæ¾æ•£è·¯ç”±æ¨¡å¼/æ·»åŠ è·¯ç”±åœ°å€
+Input:          id: Socketå¥æŸ„
+                segments: ç½‘æ®µæ€»æ•°
+                addr: åœ¨è·¯ç”±é¦–éƒ¨ä¸­æ·»åŠ çš„è·¯ç”±åœ°å€çš„æŒ‡é’ˆ
+Output:         æ— 
+Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+Others:         æ­¤æ¥å£ä»…é€‚ç”¨äºlinux/vxworks
 ************************************************************************/
 extern EINT32 SetSocketLoosRouteV6 (EFD_T id, EINT32 segments, IPv6Addr_T * addr);
 
 /************************************************************************
   Function:       SetSocketQosV6
-  Description:    ÉèÖÃIPv6 socketµÄqosÀàĞÍ
-  Input:          id: Socket¾ä±ú; qos: qosÀàĞÍ;
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú²»ÊÊÓÃÓÚwindows
+  Description:    è®¾ç½®IPv6 socketçš„qosç±»å‹
+  Input:          id: Socketå¥æŸ„; qos: qosç±»å‹;
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£ä¸é€‚ç”¨äºwindows
 ************************************************************************/
 extern EINT32 SetSocketQosV6 (EFD_T id, EUINT32 qos);
 
 /************************************************************************
   Function:       BindSocketIPv6
-  Description:    ½«IPv6 SocketÓë±¾µØ¶Ë¿Ú°ó¶¨
-  Input:          id:Socket¾ä±ú, port: ¶Ë¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å°†IPv6 Socketä¸æœ¬åœ°ç«¯å£ç»‘å®š
+  Input:          id:Socketå¥æŸ„, port: ç«¯å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 #define BindSocketIPv6(sockv6, port) BindSocketIPv6Ext(sockv6, NULL, port, 0, 0, 0)
 
 /************************************************************************
   Function:       BindSrcSocketIPv6
-  Description:    ½«IPv6 SocketÓë±¾µØ¶Ë¿Ú°ó¶¨
-  Input:          id: Socket¾ä±ú
-                  srcIp: ipµØÖ·
-                  port: ¶Ë¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å°†IPv6 Socketä¸æœ¬åœ°ç«¯å£ç»‘å®š
+  Input:          id: Socketå¥æŸ„
+                  srcIp: ipåœ°å€
+                  port: ç«¯å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 #define BindSrcSocketIPv6(sockv6, ip, port) BindSocketIPv6Ext(sockv6, ip, port, 0, 0, 0)
 
 /************************************************************************
   Function:       BindSocketIPv6Ext
-  Description:    ½«IPv6 SocketÓë±¾µØ¶Ë¿Ú°ó¶¨
-  Input:          id: Socket¾ä±ú
-                  srcIp: ipµØÖ·(NULLÔò°ó¶¨ÈÎÒâIP)
-                  port: ¶Ë¿Ú
-                  qos: qosÀàĞÍ(Õ¼8Î» & 255)
-                  flowLable: Á÷±êÇ©(Õ¼20Î» & 1048575)
-                  scopeId: ×÷ÓÃÓòID(½öÓÃÓÚ±¾µØÁ´½Ó£¬ÀàËÆÓÚÍø¿Ú¼Ó%×·¼ÓÔÚIPv6µØÖ·ºó£¬ÏàÍ¬IDµÄsocket²ÅÄÜÍ¨ĞÅ)
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         Ä¬ÈÏÉèÖÃºóÈıÎ»Èë²ÎÎª0(may deprecated)
+  Description:    å°†IPv6 Socketä¸æœ¬åœ°ç«¯å£ç»‘å®š
+  Input:          id: Socketå¥æŸ„
+                  srcIp: ipåœ°å€(NULLåˆ™ç»‘å®šä»»æ„IP)
+                  port: ç«¯å£
+                  qos: qosç±»å‹(å 8ä½ & 255)
+                  flowLable: æµæ ‡ç­¾(å 20ä½ & 1048575)
+                  scopeId: ä½œç”¨åŸŸID(ä»…ç”¨äºæœ¬åœ°é“¾æ¥ï¼Œç±»ä¼¼äºç½‘å£åŠ %è¿½åŠ åœ¨IPv6åœ°å€åï¼Œç›¸åŒIDçš„socketæ‰èƒ½é€šä¿¡)
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         é»˜è®¤è®¾ç½®åä¸‰ä½å…¥å‚ä¸º0(may deprecated)
 ************************************************************************/
 extern EINT32 BindSocketIPv6Ext (EFD_T id, ECHAR * srcIp, EUINT16 port, EUINT32 qos, EUINT32 flowLabel, IfIndex scopeId);
 
 /************************************************************************
   Function:       ListenSocketV6
-  Description:    Æô¶¯IPv6 Socket¼àÌı
-  Input:          id:Socket¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å¯åŠ¨IPv6 Socketç›‘å¬
+  Input:          id:Socketå¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 ListenSocketV6 (EFD_T id);
 
 /************************************************************************
   Function:       AcceptSocketV6
-  Description:    ½ÓÊÜIPv6¿Í»§¶ËµÄÇëÇó
-  Input:          id:Socket¾ä±ú;
-  Output:         pClientIpAddr: ¿Í»§¶ËIPµØÖ·
-  Return:         ³É¹¦: ĞÂ½¨µÄSocket¾ä±ú, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ¥å—IPv6å®¢æˆ·ç«¯çš„è¯·æ±‚
+  Input:          id:Socketå¥æŸ„;
+  Output:         pClientIpAddr: å®¢æˆ·ç«¯IPåœ°å€
+  Return:         æˆåŠŸ: æ–°å»ºçš„Socketå¥æŸ„, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EFD_T AcceptSocketV6 (EFD_T id, ECHAR * pClientIpAddr);
 
 /************************************************************************
   Function:       ConnectSocketV6
-  Description:    IPv6 ¿Í»§¶Ëºô½Ğ·şÎñÆ÷
-  Input:          id:Socket¾ä±ú; remoteIpAddr: ·şÎñÆ÷IPµØÖ·; port: ¶Ë¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK , Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    IPv6 å®¢æˆ·ç«¯å‘¼å«æœåŠ¡å™¨
+  Input:          id:Socketå¥æŸ„; remoteIpAddr: æœåŠ¡å™¨IPåœ°å€; port: ç«¯å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK , å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 ConnectSocketV6 (EFD_T id, ECHAR * remoteIpAddr, EUINT16 port);
 
 /************************************************************************
   Function:       ReadFrameV6
-  Description:    ½ÓÊÕIPv6 UDPÖ¡Êı¾İ
-  Input:          id: Socket¾ä±ú; len: »º³åÇøµÄ³¤¶È
-  Output:         buf[]: »º´æ; pRemoteIpAddr: Êı¾İÖ¡Ô´IPµØÖ·
-  Return:         ³É¹¦:´óÓÚ0£¬½ÓÊÕµ½Êµ¼ÊµÄÊı¾İ×Ö½ÚÊı, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ¥æ”¶IPv6 UDPå¸§æ•°æ®
+  Input:          id: Socketå¥æŸ„; len: ç¼“å†²åŒºçš„é•¿åº¦
+  Output:         buf[]: ç¼“å­˜; pRemoteIpAddr: æ•°æ®å¸§æºIPåœ°å€
+  Return:         æˆåŠŸ:å¤§äº0ï¼Œæ¥æ”¶åˆ°å®é™…çš„æ•°æ®å­—èŠ‚æ•°, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 ReadFrameV6 (EFD_T id, ECHAR buf[], EUINT32 len, ECHAR * pRemoteIpAddr);
 
 /************************************************************************
   Function:       ReadFrameExtV6
-  Description:    ½ÓÊÕIPv6 UDPÖ¡Êı¾İ
-  Input:          id:Socket¾ä±ú; len:»º³åÇøµÄ³¤¶È
-  Output:         buf[]: »º´æ; pRemoteIpAddr: Êı¾İÖ¡Ô´IPµØÖ·; pRemotePort: Êı¾İÖ¡Ô´IP¶Ë¿Ú
-  Return:         ³É¹¦:´óÓÚ0£¬½ÓÊÕµ½Êµ¼ÊµÄÊı¾İ×Ö½ÚÊı, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ¥æ”¶IPv6 UDPå¸§æ•°æ®
+  Input:          id:Socketå¥æŸ„; len:ç¼“å†²åŒºçš„é•¿åº¦
+  Output:         buf[]: ç¼“å­˜; pRemoteIpAddr: æ•°æ®å¸§æºIPåœ°å€; pRemotePort: æ•°æ®å¸§æºIPç«¯å£
+  Return:         æˆåŠŸ:å¤§äº0ï¼Œæ¥æ”¶åˆ°å®é™…çš„æ•°æ®å­—èŠ‚æ•°, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 ReadFrameExtV6 (EFD_T id, ECHAR buf[], EUINT32 len, ECHAR * pRemoteIpAddr, EUINT32 * pRemotePort);
 
 /************************************************************************
   Function:       SendFrameV6
-  Description:    ·¢ËÍIPv6 UDPÖ¡Êı¾İ
-  Input:          id: Socket¾ä±ú; buf[]: »º´æ; len: »º³åÇøµÄ³¤¶È;
-                  remoteIpAddr: Êı¾İÖ¡Ä¿µÄIPµØÖ·; dstPort: ¶Ë¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦: ·¢ËÍµÄÊµ¼ÊÊı¾İ×Ö½ÚÊı, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å‘é€IPv6 UDPå¸§æ•°æ®
+  Input:          id: Socketå¥æŸ„; buf[]: ç¼“å­˜; len: ç¼“å†²åŒºçš„é•¿åº¦;
+                  remoteIpAddr: æ•°æ®å¸§ç›®çš„IPåœ°å€; dstPort: ç«¯å£
+  Output:         æ— 
+  Return:         æˆåŠŸ: å‘é€çš„å®é™…æ•°æ®å­—èŠ‚æ•°, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SendFrameV6 (EFD_T id, ECHAR buf[], EUINT32 len, ECHAR * remoteIpAddr, EUINT16 dstPort);
 
 /************************************************************************
   Function:       ReadStreamV6
-  Description:    ½ÓÊÕIPv6Ö¡Êı¾İµÄ»º³åÇø
-  Input:          id: Socket¾ä±ú; buf[]: »º´æ; len: »º³åÇøµÄ³¤¶È;
-  Output:         ÎŞ
-  Return:         ³É¹¦:´óÓÚ0£¬³É¹¦£¬½ÓÊÕµ½Êµ¼ÊµÄÊı¾İ×Ö½ÚÊı, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    æ¥æ”¶IPv6å¸§æ•°æ®çš„ç¼“å†²åŒº
+  Input:          id: Socketå¥æŸ„; buf[]: ç¼“å­˜; len: ç¼“å†²åŒºçš„é•¿åº¦;
+  Output:         æ— 
+  Return:         æˆåŠŸ:å¤§äº0ï¼ŒæˆåŠŸï¼Œæ¥æ”¶åˆ°å®é™…çš„æ•°æ®å­—èŠ‚æ•°, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 ReadStreamV6 (EFD_T id, ECHAR buf[], EINT32 len);
 
 /************************************************************************
   Function:       SendStreamV6
-  Description:    ·¢ËÍIPv6Ö¡Êı¾İ
-  Input:          id: Socket¾ä±ú; buf[]: »º´æ; len: »º³åÇøµÄ³¤¶È;
-  Output:         ÎŞ
-  Return:         ³É¹¦:´óÓÚ0£¬³É¹¦£¬·¢ËÍµÄÊµ¼ÊÊı¾İ×Ö½ÚÊı, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å‘é€IPv6å¸§æ•°æ®
+  Input:          id: Socketå¥æŸ„; buf[]: ç¼“å­˜; len: ç¼“å†²åŒºçš„é•¿åº¦;
+  Output:         æ— 
+  Return:         æˆåŠŸ:å¤§äº0ï¼ŒæˆåŠŸï¼Œå‘é€çš„å®é™…æ•°æ®å­—èŠ‚æ•°, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SendStreamV6 (EFD_T id, ECHAR buf[], EINT32 len);
 
 /************************************************************************
   Function:       ReadFromToV6
-  Description:    Ê¹ÓÃrecvmsg½ÓÊÕÊı¾İ°ü£¬Ê¹µÃ¿ÉÒÔ»ñÈ¡ipv6Í·µÄÄ¿±êµØÖ·
-  Input:          s: ½ÓÊÕÌ×½Ó×Ö
-                  bufLen: »º³åÇø´óĞ¡
-  Output:         pRecvBuf: ´æ·ÅÊı¾İµÄ»º³åÇø
-                  pSrcIp: Êı¾İ°üµÄÔ´¶ËIPv6µØÖ·(ÍøÂç×Ö½ÚĞò)
-                  pDstIp: Êı¾İ°üµÄÄ¿µÄIPv6µØÖ·(ÍøÂç×Ö½ÚĞò)
-  Return:         ³É¹¦: ½ÓÊÕÊı¾İµÄ³¤¶È;Ê§°Ü: ETERROR
-  Others:         ´Ë½Ó¿ÚÓÃÓÚlinux\vxworks\unix
+  Description:    ä½¿ç”¨recvmsgæ¥æ”¶æ•°æ®åŒ…ï¼Œä½¿å¾—å¯ä»¥è·å–ipv6å¤´çš„ç›®æ ‡åœ°å€
+  Input:          s: æ¥æ”¶å¥—æ¥å­—
+                  bufLen: ç¼“å†²åŒºå¤§å°
+  Output:         pRecvBuf: å­˜æ”¾æ•°æ®çš„ç¼“å†²åŒº
+                  pSrcIp: æ•°æ®åŒ…çš„æºç«¯IPv6åœ°å€(ç½‘ç»œå­—èŠ‚åº)
+                  pDstIp: æ•°æ®åŒ…çš„ç›®çš„IPv6åœ°å€(ç½‘ç»œå­—èŠ‚åº)
+  Return:         æˆåŠŸ: æ¥æ”¶æ•°æ®çš„é•¿åº¦;å¤±è´¥: ETERROR
+  Others:         æ­¤æ¥å£ç”¨äºlinux\vxworks\unix
 ************************************************************************/
 extern EINT32 ReadFromToV6 (EFD_T s, void * pRecvBuf, EUINT16 bufLen,
     ECHAR * pSrcIp, ECHAR * pDstIp);
 
 /************************************************************************
   Function:       EtCreateRouteV6
-  Description:    Ôö¼ÓÂ·ÓÉ
-  Input:          pDestIpAddr: Ä¿±êIPv6µØÖ·
-                  pNextHop: ÏÂÒ»ÌõµØÖ·
-                  pDevName: Éè±¸Ãû³Æ
-                  pNetMask: ×ÓÍøÑÚÂë
-                  mtu: Á´Â·²ã×î´ó´«Êäµ¥Ôª
-  Output:         ÎŞ
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  ETOK - ´¦Àí³É¹¦
-  Others:         ´Ë½Ó¿ÚÓÃÓÚlinux\vxworks
+  Description:    å¢åŠ è·¯ç”±
+  Input:          pDestIpAddr: ç›®æ ‡IPv6åœ°å€
+                  pNextHop: ä¸‹ä¸€æ¡åœ°å€
+                  pDevName: è®¾å¤‡åç§°
+                  pNetMask: å­ç½‘æ©ç 
+                  mtu: é“¾è·¯å±‚æœ€å¤§ä¼ è¾“å•å…ƒ
+  Output:         æ— 
+  Return:         ETERROR - å¤„ç†å¤±è´¥  ETOK - å¤„ç†æˆåŠŸ
+  Others:         æ­¤æ¥å£ç”¨äºlinux\vxworks
 ************************************************************************/
 #ifdef LINUX
 extern EINT32 EtCreateRouteV6 (ECHAR * pDestIpAddr, ECHAR * pNextHop, ECHAR * pDevName, EUINT32 mtu);
@@ -1145,15 +1145,15 @@ extern EINT32 EtCreateRouteV6 (ECHAR * pDestIpAddr, ECHAR * pNextHop, ECHAR * pN
 
 /************************************************************************
   Function:       EtDeleteRouteV6
-  Description:    É¾³ıÂ·ÓÉ
-  Input:          pDestIpAddr: Ä¿±êIPv6µØÖ·
-                  pNextHop: ÏÂÒ»ÌõµØÖ·
-                  pDevName: Éè±¸Ãû³Æ
-                  pNetMask: ×ÓÍøÑÚÂë
-                  mtu: Á´Â·²ã×î´ó´«Êäµ¥Ôª
-  Output:         ÎŞ
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  ETOK - ´¦Àí³É¹¦
-  Others:         ´Ë½Ó¿ÚÓÃÓÚlinux\vxworks
+  Description:    åˆ é™¤è·¯ç”±
+  Input:          pDestIpAddr: ç›®æ ‡IPv6åœ°å€
+                  pNextHop: ä¸‹ä¸€æ¡åœ°å€
+                  pDevName: è®¾å¤‡åç§°
+                  pNetMask: å­ç½‘æ©ç 
+                  mtu: é“¾è·¯å±‚æœ€å¤§ä¼ è¾“å•å…ƒ
+  Output:         æ— 
+  Return:         ETERROR - å¤„ç†å¤±è´¥  ETOK - å¤„ç†æˆåŠŸ
+  Others:         æ­¤æ¥å£ç”¨äºlinux\vxworks
 ************************************************************************/
 #ifdef LINUX
 extern EINT32 EtDeleteRouteV6 (ECHAR * pDestIpAddr, ECHAR * pNextHop, ECHAR * pDevName, EUINT32 mtu);
@@ -1163,273 +1163,276 @@ extern EINT32 EtDeleteRouteV6 (ECHAR * pDestIpAddr, ECHAR * pNextHop, ECHAR * pN
 
 /************************************************************************
   Function:       OpenIPv6Only
-  Description:    ´ò¿ªIPv6Ì×½Ó×Ö½ö¼àÌıIPv6±¨ÎÄ
-  Input:          sockId: Ì×½Ó×Ö
-  Output:         ÎŞ
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  ETOK - ´¦Àí³É¹¦
-  Others:         ÎŞ
+  Description:    æ‰“å¼€IPv6å¥—æ¥å­—ä»…ç›‘å¬IPv6æŠ¥æ–‡
+  Input:          sockId: å¥—æ¥å­—
+  Output:         æ— 
+  Return:         ETERROR - å¤„ç†å¤±è´¥  ETOK - å¤„ç†æˆåŠŸ
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 OpenIPv6Only (EFD_T sockId);
 
 /************************************************************************
   Function:       CloseIPv6Only
-  Description:    ¹Ø±ÕIPv6Ì×½Ó×Ö½ö¼àÌıIPv6±¨ÎÄ¹¦ÄÜ
-  Input:          sockId: Ì×½Ó×Ö
-  Output:         ÎŞ
-  Return:         ETERROR - ´¦ÀíÊ§°Ü  ETOK - ´¦Àí³É¹¦
-  Others:         ÎŞ
+  Description:    å…³é—­IPv6å¥—æ¥å­—ä»…ç›‘å¬IPv6æŠ¥æ–‡åŠŸèƒ½
+  Input:          sockId: å¥—æ¥å­—
+  Output:         æ— 
+  Return:         ETERROR - å¤„ç†å¤±è´¥  ETOK - å¤„ç†æˆåŠŸ
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 CloseIPv6Only (EFD_T sockId);
 
 /************************************************************************
   Function:       SetIPv6UnicastHops
-  Description:    ÉèÖÃSocketIPv6Êı¾İ°üÖĞµ¥²¥µØÖ·ÌøÊıÏŞÖÆ
-  Input:          sockv6:Ì×½Ó×Ö¾ä±ú
-                  hopLimit:µ¥²¥µØÖ·ÌøÊıÏŞÖÆ
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®SocketIPv6æ•°æ®åŒ…ä¸­å•æ’­åœ°å€è·³æ•°é™åˆ¶
+  Input:          sockv6:å¥—æ¥å­—å¥æŸ„
+                  hopLimit:å•æ’­åœ°å€è·³æ•°é™åˆ¶
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetIPv6UnicastHops (EINT32 hopLimit, EFD_T sockv6);
 
 /************************************************************************
   Function:       GetIPv6UnicastHops
-  Description:    »ñÈ¡SocketIPv6Êı¾İ°üÖĞµ¥²¥µØÖ·ÌøÊıÏŞÖÆ
-  Input:          sockv6:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:hoplimit, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è·å–SocketIPv6æ•°æ®åŒ…ä¸­å•æ’­åœ°å€è·³æ•°é™åˆ¶
+  Input:          sockv6:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:hoplimit, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 GetIPv6UnicastHops (EFD_T sockv6);
 
 /************************************************************************
   Function:       SetIPv6MulticastHops
-  Description:    ÉèÖÃSocketIPv6Êı¾İ°üÖĞ¶à²¥µØÖ·ÌøÊıÏŞÖÆ
-  Input:          sockv6:Ì×½Ó×Ö¾ä±ú
-                  hopLimit:¶à²¥µØÖ·ÌøÊıÏŞÖÆ
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®SocketIPv6æ•°æ®åŒ…ä¸­å¤šæ’­åœ°å€è·³æ•°é™åˆ¶
+  Input:          sockv6:å¥—æ¥å­—å¥æŸ„
+                  hopLimit:å¤šæ’­åœ°å€è·³æ•°é™åˆ¶
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetIPv6MulticastHops (EINT32 hopLimit, EFD_T sockv6);
 
 /************************************************************************
   Function:       GetIPv6MulticastHops
-  Description:    »ñÈ¡Socket IPv6Êı¾İ°üÖĞ¶à²¥µØÖ·ÌøÊıÏŞÖÆ
-  Input:          sockv6:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:hoplimit, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è·å–Socket IPv6æ•°æ®åŒ…ä¸­å¤šæ’­åœ°å€è·³æ•°é™åˆ¶
+  Input:          sockv6:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:hoplimit, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 GetIPv6MulticastHops (EFD_T sockv6);
 
 /************************************************************************
   Function:       SetIPv6MCInterface
-  Description:    ÉèÖÃSocket IPv6¶à²¥Íâ³ö½Ó¿Ú(Íø¿Ú)
-  Input:          sockv6:Ì×½Ó×Ö¾ä±ú
-                  iF:Íâ³ö½Ó¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®Socket IPv6å¤šæ’­å¤–å‡ºæ¥å£(ç½‘å£)
+  Input:          sockv6:å¥—æ¥å­—å¥æŸ„
+                  iF:å¤–å‡ºæ¥å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetIPv6MCInterface (IfIndex If, EFD_T sockv6);
 
 /************************************************************************
   Function:       GetIPv6MCInterface
-  Description:    »ñÈ¡Socket IPv6¶à²¥Íâ³ö½Ó¿Ú(Íø¿Ú)
-  Input:          sockv6:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:Íâ³ö½Ó¿ÚIf, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è·å–Socket IPv6å¤šæ’­å¤–å‡ºæ¥å£(ç½‘å£)
+  Input:          sockv6:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:å¤–å‡ºæ¥å£If, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern IfIndex GetIPv6MCInterface (EFD_T sockv6);
 
 /************************************************************************
   Function:       SetIPv6UCInterface
-  Description:    ÉèÖÃSocket IPv6µ¥²¥Íâ³ö½Ó¿Ú(Íø¿Ú)
-  Input:          sockv6:Ì×½Ó×Ö¾ä±ú
-                  If:Íâ³ö½Ó¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®Socket IPv6å•æ’­å¤–å‡ºæ¥å£(ç½‘å£)
+  Input:          sockv6:å¥—æ¥å­—å¥æŸ„
+                  If:å¤–å‡ºæ¥å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetIPv6UCInterface (IfIndex If, EFD_T sockv6);
 
 /************************************************************************
   Function:       GetIPv6UCInterface
-  Description:    »ñÈ¡Socket IPv6µ¥²¥Íâ³ö½Ó¿Ú(Íø¿Ú)
-  Input:          sockv6:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:Íâ³ö½Ó¿ÚIf, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è·å–Socket IPv6å•æ’­å¤–å‡ºæ¥å£(ç½‘å£)
+  Input:          sockv6:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:å¤–å‡ºæ¥å£If, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern IfIndex GetIPv6UCInterface (EFD_T sockv6);
 
 /************************************************************************
   Function:       SetIPv6IfLoop
-  Description:    ÉèÖÃSocketIPv6ÊÇ·ñ»·»Ø
-  Input:          sockv6:Ì×½Ó×Ö¾ä±ú
-                  IfLoop:ÊÇ·ñ»·»ØÅĞ¶¨ÖµETTRUE/ETFALSE
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®SocketIPv6æ˜¯å¦ç¯å›
+  Input:          sockv6:å¥—æ¥å­—å¥æŸ„
+                  IfLoop:æ˜¯å¦ç¯å›åˆ¤å®šå€¼ETTRUE/ETFALSE
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 SetIPv6IfLoop (EUCHAR IfLoop, EFD_T sockv6);
 
 /************************************************************************
   Function:       SetIPv6IfLoop
-  Description:    ÉèÖÃSocketIPv6ÊÇ·ñ»·»Ø
-  Input:          sockv6:Ì×½Ó×Ö¾ä±ú
-                   IfLoop:ÊÇ·ñ»·»ØÅĞ¶¨Öµ
-  Output:         ÎŞ
-  Return:         ³É¹¦:IfLoop(ETTRUE/ETFALSE), Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®SocketIPv6æ˜¯å¦ç¯å›
+  Input:          sockv6:å¥—æ¥å­—å¥æŸ„
+                   IfLoop:æ˜¯å¦ç¯å›åˆ¤å®šå€¼
+  Output:         æ— 
+  Return:         æˆåŠŸ:IfLoop(ETTRUE/ETFALSE), å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EUCHAR GetIPv6IfLoop (EFD_T sockv6);
 
 /************************************************************************
   Function:       SetIPv6MultiCast
-  Description:    ÉèÖÃSocket IPv6¶à²¥µØÖ·(¼ÓÈë¶à²¥×é)
-  Input:          Addr:¶à²¥µØÖ·
-                  sockv6:Ì×½Ó×Ö¾ä±ú
-                  IfAddr6: ½øĞĞ×é²¥Í¨Ñ¶µÄ³ö¿Ú¶Ë¿ÚµØÖ·£¬
-                           ÈôÎª0ÔòÍ¨¹ıGetIPMCInterface»ñÈ¡
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         Ì×½Ó×ÖÀàĞÍ±ØĞëSOCK_DGRAM»òSOCK_RAW
+  Description:    è®¾ç½®Socket IPv6å¤šæ’­åœ°å€(åŠ å…¥å¤šæ’­ç»„)
+  Input:          Addr:å¤šæ’­åœ°å€
+                  sockv6:å¥—æ¥å­—å¥æŸ„
+                  IfAddr6: è¿›è¡Œç»„æ’­é€šè®¯çš„å‡ºå£ç«¯å£åœ°å€ï¼Œ
+                           è‹¥ä¸º0åˆ™é€šè¿‡GetIPMCInterfaceè·å–
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         å¥—æ¥å­—ç±»å‹å¿…é¡»SOCK_DGRAMæˆ–SOCK_RAW
 ************************************************************************/
 extern EINT32 SetIPv6MultiCast (ECHAR * Addr, EFD_T sockv6, IfIndex IfAddr6);
 
 /************************************************************************
   Function:       DropIPv6MultiCast
-  Description:    È¡ÏûSocket IPv6¶à²¥µØÖ·(Àë¿ª¶à²¥×é)
-  Input:          Addr:¶à²¥µØÖ·
-                  sockv6:Ì×½Ó×Ö¾ä±ú
-                  IfAddr6: ½øĞĞ×é²¥Í¨Ñ¶µÄ³ö¿Ú¶Ë¿ÚµØÖ·£¬
-                           ÈôÎª0ÔòÍ¨¹ıGetIPMCInterface»ñÈ¡
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         Ì×½Ó×ÖÀàĞÍ±ØĞëSOCK_DGRAM»òSOCK_RAW
+  Description:    å–æ¶ˆSocket IPv6å¤šæ’­åœ°å€(ç¦»å¼€å¤šæ’­ç»„)
+  Input:          Addr:å¤šæ’­åœ°å€
+                  sockv6:å¥—æ¥å­—å¥æŸ„
+                  IfAddr6: è¿›è¡Œç»„æ’­é€šè®¯çš„å‡ºå£ç«¯å£åœ°å€ï¼Œ
+                           è‹¥ä¸º0åˆ™é€šè¿‡GetIPMCInterfaceè·å–
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         å¥—æ¥å­—ç±»å‹å¿…é¡»SOCK_DGRAMæˆ–SOCK_RAW
 ************************************************************************/
 extern EINT32 DropIPv6MultiCast (ECHAR * Addr, EFD_T sockv6, IfIndex IfAddr6);
 
 /************************************************************************
   Function:       BlockIPv6Source
-  Description:    ×èÈûSocketIP¶à²¥Ô´µØÖ·
-  Input:          Addr:¶à²¥Ô´µØÖ·
-                  sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú½öÓÃÓÚÒÑ¾­°ó¶¨bindµÄsocket
-                  Ô´sourceĞÅÏ¢ÓÉ°ó¶¨ĞÅÏ¢»ñÈ¡
+  Description:    é˜»å¡SocketIPå¤šæ’­æºåœ°å€
+  Input:          Addr:å¤šæ’­æºåœ°å€
+                  sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£ä»…ç”¨äºå·²ç»ç»‘å®šbindçš„socket
+                  æºsourceä¿¡æ¯ç”±ç»‘å®šä¿¡æ¯è·å–
 ************************************************************************/
 #define BlockIPv6Source(Addr, sock) BlockIPSourceExt(Addr, sock, 0) /* grp_port = 0 to Ignore */
 
 /************************************************************************
   Function:       BlockIPv6SourceExt
-  Description:    ×èÈûSocketIP¶à²¥Ô´µØÖ·
-  Input:          Addr:¶à²¥Ô´µØÖ·
-                  sock:Ì×½Ó×Ö¾ä±ú
-                  grp_port: ¶à²¥Ô´¶Ë¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú½öÓÃÓÚÒÑ¾­°ó¶¨bindµÄsocket
-                  Ô´sourceĞÅÏ¢ÓÉ°ó¶¨ĞÅÏ¢»ñÈ¡
+  Description:    é˜»å¡SocketIPå¤šæ’­æºåœ°å€
+  Input:          Addr:å¤šæ’­æºåœ°å€
+                  sock:å¥—æ¥å­—å¥æŸ„
+                  grp_port: å¤šæ’­æºç«¯å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£ä»…ç”¨äºå·²ç»ç»‘å®šbindçš„socket
+                  æºsourceä¿¡æ¯ç”±ç»‘å®šä¿¡æ¯è·å–
 ************************************************************************/
 extern EINT32 BlockIPv6SourceExt (ECHAR * Addr, EFD_T sock, EUINT16 grp_port);
 
 /************************************************************************
   Function:       UnblockIPv6Source
-  Description:    ¿ªÍ¨×èÈûµÄSocketIP¶à²¥Ô´µØÖ·
-  Input:          Addr:¶à²¥Ô´µØÖ·
-                  sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú½öÓÃÓÚÒÑ¾­°ó¶¨bindµÄsocket
-                  Ô´sourceĞÅÏ¢ÓÉ°ó¶¨ĞÅÏ¢»ñÈ¡
+  Description:    å¼€é€šé˜»å¡çš„SocketIPå¤šæ’­æºåœ°å€
+  Input:          Addr:å¤šæ’­æºåœ°å€
+                  sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£ä»…ç”¨äºå·²ç»ç»‘å®šbindçš„socket
+                  æºsourceä¿¡æ¯ç”±ç»‘å®šä¿¡æ¯è·å–
 ************************************************************************/
 #define UnblockIPv6Source(Addr, sock) UnblockIPSourceExt(Addr, sock, 0)  /* grp_port = 0 to Ignore */
 
 /************************************************************************
   Function:       UnblockIPv6SourceExt
-  Description:    ¿ªÍ¨×èÈûµÄSocketIP¶à²¥Ô´µØÖ·
-  Input:          Addr:¶à²¥Ô´µØÖ·
-                  sock:Ì×½Ó×Ö¾ä±ú
-                  grp_port: ¶à²¥Ô´¶Ë¿Ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿Ú½öÓÃÓÚÒÑ¾­°ó¶¨bindµÄsocket
-                  Ô´sourceĞÅÏ¢ÓÉ°ó¶¨ĞÅÏ¢»ñÈ¡
+  Description:    å¼€é€šé˜»å¡çš„SocketIPå¤šæ’­æºåœ°å€
+  Input:          Addr:å¤šæ’­æºåœ°å€
+                  sock:å¥—æ¥å­—å¥æŸ„
+                  grp_port: å¤šæ’­æºç«¯å£
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£ä»…ç”¨äºå·²ç»ç»‘å®šbindçš„socket
+                  æºsourceä¿¡æ¯ç”±ç»‘å®šä¿¡æ¯è·å–
 ************************************************************************/
 extern EINT32 UnblockIPv6SourceExt (ECHAR * Addr, EFD_T sock, EUINT16 grp_port);
 
 /************************************************************************
   Function:       SetIPv6PMTUD
-  Description:    ÉèÖÃIPv6Â·¾¶MTU·¢ÏÖ¹¦ÄÜ¿ª¹Ø
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-                  val: Îª 1 ±íÊ¾: PMTUD¹¦ÄÜ²»±ØÖ´ĞĞ£¬Îª±ÜÃâ·ÖÆ¬·Ö×é¾ÍÊ¹ÓÃ×îĞ¡MTU·¢ËÍ
-                        Îª 0 ±íÃ÷: PMTUD¹¦ÄÜ¶ÔÓÚËùÓĞÄ¿µÄµØ¶¼µÃÖ´ĞĞ
-                        Îª -1±íÊ¾: PMTUD¹¦ÄÜ½ö¶Ôµ¥²¥Ä¿µÄµØÖ´ĞĞ£¬¶ÔÓÚ¶à²¥Ä¿µÄµØ¾ÍÊ¹ÓÃ×îĞ¡MTU
-                        (´ËÑ¡ÏîÄ¬ÈÏÎª-1(´æÒÉ))
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ´Ë½Ó¿ÚÔÚ²»Í¬ÏµÍ³ÏÂµÄ(ºê)¿ÉĞĞĞÔ´æÒÉ
+  Description:    è®¾ç½®IPv6è·¯å¾„MTUå‘ç°åŠŸèƒ½å¼€å…³
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+                  val: ä¸º 1 è¡¨ç¤º: PMTUDåŠŸèƒ½ä¸å¿…æ‰§è¡Œï¼Œä¸ºé¿å…åˆ†ç‰‡åˆ†ç»„å°±ä½¿ç”¨æœ€å°MTUå‘é€
+                        ä¸º 0 è¡¨æ˜: PMTUDåŠŸèƒ½å¯¹äºæ‰€æœ‰ç›®çš„åœ°éƒ½å¾—æ‰§è¡Œ
+                        ä¸º -1è¡¨ç¤º: PMTUDåŠŸèƒ½ä»…å¯¹å•æ’­ç›®çš„åœ°æ‰§è¡Œï¼Œå¯¹äºå¤šæ’­ç›®çš„åœ°å°±ä½¿ç”¨æœ€å°MTU
+                        (æ­¤é€‰é¡¹é»˜è®¤ä¸º-1(å­˜ç–‘))
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ­¤æ¥å£åœ¨ä¸åŒç³»ç»Ÿä¸‹çš„(å®)å¯è¡Œæ€§å­˜ç–‘
 ************************************************************************/
 extern EINT32 SetIPv6PMTUD (EFD_T sock, EINT32 val);
 
 /************************************************************************
   Function:       GetIPv6PMTU
-  Description:    »ñÈ¡IPv6µÄµ±Ç°Â·¾¶Path_MTU
-  Input:          sock:Ì×½Ó×Ö¾ä±ú
-  Output:         ÎŞ
-  Return:         ³É¹¦:PMTUÖµ, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è·å–IPv6çš„å½“å‰è·¯å¾„Path_MTU
+  Input:          sock:å¥—æ¥å­—å¥æŸ„
+  Output:         æ— 
+  Return:         æˆåŠŸ:PMTUå€¼, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EUINT32 GetIPv6PMTU (EFD_T sock);
 
 /*----------------------------multicast--------------------------------*/
 /************************************************************************
   Function:       OpenMultiSock
-  Description:    ÉèÖÃsocketµÄ×é²¥·¢ËÍ½Ó¿ÚµØÖ·¼°·¢ËÍ×é²¥°üµÄÌØĞÔ£¬½ûÓÃ×é²¥»Ø»·
-  Input:          sId: ĞèÒª·¢ËÍ×é²¥µÄsocket¾ä±ú£»ipAddr:Ä¬ÈÏ·¢ËÍ×é²¥°ü½Ó¿ÚµØÖ·
-  Output:         ÎŞ
-  Return:         ³É¹¦£oETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®socketçš„ç»„æ’­å‘é€æ¥å£åœ°å€åŠå‘é€ç»„æ’­åŒ…çš„ç‰¹æ€§ï¼Œç¦ç”¨ç»„æ’­å›ç¯
+  Input:          sId: éœ€è¦å‘é€ç»„æ’­çš„socketå¥æŸ„ï¼›ipAddr:é»˜è®¤å‘é€ç»„æ’­åŒ…æ¥å£åœ°å€
+  Output:         æ— 
+  Return:         æˆåŠŸî–µETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 OpenMultiSock(EUINT32 sId, EUINT32 ipAddr);
 
 /************************************************************************
   Function:       OpenMultiSockSlefLoop
-  Description:    ÉèÖÃsocketµÄ×é²¥·¢ËÍ½Ó¿ÚµØÖ·¼°·¢ËÍ×é²¥°üµÄÌØĞÔ,×é²¥×Ô»Ø»·
-  Input:          sId: ĞèÒª·¢ËÍ×é²¥µÄsocket¾ä±ú£»ipAddr:Ä¬ÈÏ·¢ËÍ×é²¥°ü½Ó¿ÚµØÖ·
-  Output:         ÎŞ
-  Return:         ³É¹¦£oETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    è®¾ç½®socketçš„ç»„æ’­å‘é€æ¥å£åœ°å€åŠå‘é€ç»„æ’­åŒ…çš„ç‰¹æ€§,ç»„æ’­è‡ªå›ç¯
+  Input:          sId: éœ€è¦å‘é€ç»„æ’­çš„socketå¥æŸ„ï¼›ipAddr:é»˜è®¤å‘é€ç»„æ’­åŒ…æ¥å£åœ°å€
+  Output:         æ— 
+  Return:         æˆåŠŸî–µETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 OpenMultiSockSlefLoop(EUINT32 sId, EUINT32 ipAddr);
 
 /************************************************************************
   Function:       JoinMultiGroup
-  Description:    ½«socket¼ÓÈëÖ¸¶¨µÄ×é²¥
-  Input:          recvIpAddr: ½øĞĞ×é²¥Í¨Ñ¶¶Ë¿ÚµÄIPµØÖ·
-                  multiIpAddr:×é²¥µØÖ·£»
-                  sId:ĞèÒª¼ÓÈë×é²¥µÄsocket
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å°†socketåŠ å…¥æŒ‡å®šçš„ç»„æ’­
+  Input:          recvIpAddr: è¿›è¡Œç»„æ’­é€šè®¯ç«¯å£çš„IPåœ°å€
+                  multiIpAddr:ç»„æ’­åœ°å€ï¼›
+                  sId:éœ€è¦åŠ å…¥ç»„æ’­çš„socket
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 JoinMultiGroup(EUINT32 recvIpAddr, EUINT32 multiIpAddr, EUINT32 sId);
 
 /************************************************************************
   Function:       LeaveMultiGroup
-  Description:    ½«socketÍÑÀëÖ¸¶¨µÄ×é²¥
-  Input:          recvIpAddr: ½øĞĞ×é²¥Í¨Ñ¶¶Ë¿ÚµÄIPµØÖ·
-                  multiIpAddr:×é²¥µØÖ·; 
-                  sId:ĞèÒªÍÑÀë×é²¥µÄsocket
-  Output:         ÎŞ
-  Return:         ³É¹¦:ETOK, Ê§°Ü:ETERROR
-  Others:         ÎŞ
+  Description:    å°†socketè„±ç¦»æŒ‡å®šçš„ç»„æ’­
+  Input:          recvIpAddr: è¿›è¡Œç»„æ’­é€šè®¯ç«¯å£çš„IPåœ°å€
+                  multiIpAddr:ç»„æ’­åœ°å€; 
+                  sId:éœ€è¦è„±ç¦»ç»„æ’­çš„socket
+  Output:         æ— 
+  Return:         æˆåŠŸ:ETOK, å¤±è´¥:ETERROR
+  Others:         æ— 
 ************************************************************************/
 extern EINT32 LeaveMultiGroup(EUINT32 recvIpAddr, EUINT32 multiIpAddr, EUINT32 sId);
 
+#ifdef  __cplusplus
+}
+#endif
 #endif //__BEARPUB_H__
