@@ -1,5 +1,5 @@
 # IPv6_v4_test
-IPv6_v4_socket_communication_test
+IPv6_v4_socket_communication_test for self-learning
 
 do `make ipv6addr` to make ipv6 address
 
