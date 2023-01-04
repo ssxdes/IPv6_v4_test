@@ -1,0 +1,11 @@
+﻿  main_client.c
+  main_server.c
+C:\Users\jingsixiang\Desktop\ipv6_test\ipv6_test\main_server.c(84,10): warning C4101: “tempbuff”: 未引用的局部变量
+  正在生成代码...
+C:\Users\jingsixiang\Desktop\ipv6_test\ipv6_test\main_server.c(79): warning C4716: “ThreadListenSockV6”: 必须返回一个值
+C:\Users\jingsixiang\Desktop\ipv6_test\ipv6_test\main_client.c(60): warning C4716: “ThreadListenSockV6”: 必须返回一个值
+main_server.obj : error LNK2005: _ifTestMC 已经在 main_client.obj 中定义
+main_server.obj : error LNK2005: _ThreadListenSockV6 已经在 main_client.obj 中定义
+main_server.obj : error LNK2005: _main 已经在 main_client.obj 中定义
+MSVCRTD.lib(exe_winmain.obj) : error LNK2019: 无法解析的外部符号 _WinMain@16，函数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 中引用了该符号
+C:\Users\jingsixiang\Desktop\ipv6_test\ipv6_test\proj\VS\Debug\ipv6_test.exe : fatal error LNK1120: 1 个无法解析的外部命令
